@@ -7,7 +7,7 @@ import FavoritePage from "./pages/FavoritePage";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import { ModalProvider } from "./context/ModalContext";
 import HamburgerMenu from "./HamburgerMenu";
-import MyPage from "./pages/mypage";
+import MyPage from "./pages/Mypage";
 
 
 // ドッグランのページ
