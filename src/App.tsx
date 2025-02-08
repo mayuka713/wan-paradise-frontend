@@ -7,7 +7,7 @@ import FavoritePage from "./pages/FavoritePage";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import { ModalProvider } from "./context/ModalContext";
 import HamburgerMenu from "./HamburgerMenu";
-import MyPage from "./pages/mypage";
+import Mypage from "./pages/mypage";
 
 
 // ドッグランのページ
@@ -37,6 +37,7 @@ import HospitalRegionList from "./pages/Hospital/HospitalRegionList";
 import HospitalStoreList from "./pages/Hospital/HospitalStoreList";
 import HospitalDetail from "./pages/Hospital/HospitalDetail";
 import HospitalReview from "./pages/Hospital/HospitalReviewList";
+import MyPage from "./pages/mypage";
 
 const Layout = () => {
   const location = useLocation();
