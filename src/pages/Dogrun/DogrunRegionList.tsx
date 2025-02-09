@@ -17,7 +17,7 @@ const DogrunRegionList: React.FC = () => {
   useEffect(() => {
     const fetchPrefectures = async () => {
       try {
-        const response = await fetch("http://localhost:5003/prefectures/");
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/prefectures/`);
         if (!response.ok) {
           throw new Error("Failed to fetch prefectures");
         }

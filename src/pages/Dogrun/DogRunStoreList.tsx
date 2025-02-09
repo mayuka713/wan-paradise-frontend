@@ -45,7 +45,7 @@ const DogRunStoreList: React.FC = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch("http://localhost:5003/tags");
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/tags`);
         if (!response.ok) {
           throw new Error("タグ情報の取得に失敗しました");
         }
@@ -85,9 +85,9 @@ const DogRunStoreList: React.FC = () => {
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        let url = `http://localhost:5003/stores/list/${prefectureId}/1`;
+        let url = `${process.env.REACT_APP_BASE_URL}/stores/list/${prefectureId}/1`;
         if (selectedTagIds.length > 0) {
-          url = `http://localhost:5003/stores/list/tag/${prefectureId}/1?tagIds=${selectedTagIds.join(",")}`;
+          url = `${process.env.REACT_APP_BASE_URL}/stores/list/tag/${prefectureId}/1?tagIds=${selectedTagIds.join(",")}`;
         }
         const response = await fetch(url);
         if (!response.ok) {

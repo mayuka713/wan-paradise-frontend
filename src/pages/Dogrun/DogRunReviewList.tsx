@@ -8,14 +8,10 @@ import Modal from "../../components/Modal";
 
 type Review = {
   id: number;
-  name: string;
   store_id: number;
-  store_name: string;
   rating: number;
   comment: string;
-  date: string;
   created_at: string;
-  updated_at: string;
 };
 
 const DogRunReviewList: React.FC = () => {

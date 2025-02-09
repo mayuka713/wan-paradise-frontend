@@ -63,11 +63,11 @@ const DogRunDetail: React.FC = () => {
   useEffect(() => {
     const fetchStoreAndReviews = async () => {
       try {
-        const storeResponse = await fetch(`http://localhost:5003/stores/detail/${id}`);
+        const storeResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/stores/detail/${id}`);
         if (!storeResponse.ok) throw new Error("店舗情報の取得に失敗しました");
         const storeData: Store = await storeResponse.json();
 
-        const reviewResponse = await fetch(`http://localhost:5003/reviews`);
+        const reviewResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/reviews`);
         if (!reviewResponse.ok) throw new Error("口コミ情報の取得に失敗しました");
         const reviewData: Review[] = await reviewResponse.json();
 
@@ -87,7 +87,7 @@ const DogRunDetail: React.FC = () => {
     if (userId) {
       const fetchFavorite = async () => {
         try {
-          const favoriteResponse = await fetch(`http://localhost:5003/favorites/${userId}`, {
+          const favoriteResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${userId}`, {
             method: "GET",
             credentials: "include", // クッキーを送信
           });
@@ -108,7 +108,7 @@ const DogRunDetail: React.FC = () => {
   const handleFavoriteClick = async () => {
     if (!store || userId === null) return;
 
-    const url = "http://localhost:5003/favorites";
+    const url = `${process.env.REACT_APP_BASE_URL}/favorites`;
     const method = isFavorite ? "DELETE" : "POST";
     const body = JSON.stringify({
       user_id: userId,
