@@ -8,14 +8,10 @@ import Footer from "../Footer";
 
 type Review = {
   id: number;
-  name: string;
   store_id: number;
-  store_name: string;
   rating: number;
   comment: string;
-  date: string;
   created_at: string;
-  updated_at: string;
 };
 
 const HospitalReviewList: React.FC = () => {
@@ -70,7 +66,7 @@ const HospitalReviewList: React.FC = () => {
   // 口コミを投稿する関数
   const handleReviewSubmit = async (rating: number, comment: string) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/hospital/reviews`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/reviews`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
