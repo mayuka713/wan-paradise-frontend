@@ -13,7 +13,7 @@ function Login(): JSX.Element {
 
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
-        method: "POST",
+        method: "GET",
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

@@ -90,6 +90,7 @@ const DogRunDetail: React.FC = () => {
           const favoriteResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${userId}`, {
             method: "GET",
             credentials: "include", // クッキーを送信
+            headers: { "Content-Type": "application/json" },
           });
           if (favoriteResponse.ok) {
             const favoriteData: { store_id: number }[] = await favoriteResponse.json();

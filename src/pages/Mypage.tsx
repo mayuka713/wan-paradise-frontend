@@ -23,6 +23,9 @@ const MyPage: React.FC = () => {
       if (!response.ok) {
         throw new Error("ログアウトに失敗しました");
       }
+      setUserName("");
+      setEmail("");
+      
       console.log("ログアウト成功");
       navigate("/"); // ログインページに遷移
     } catch (error) {

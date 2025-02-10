@@ -91,7 +91,7 @@ const PetShopReviewList: React.FC = () => {
           const updatedReviews = [newReview, ...preReviews];
           const totalRating = updatedReviews.reduce(
             (sum: number, rev: Review) => sum + rev.rating,
-            0.
+            0
           );
           const newAverageRating = totalRating / updatedReviews.length;
           setAverageRating(Math.min(newAverageRating,5));

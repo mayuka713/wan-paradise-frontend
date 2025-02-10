@@ -131,7 +131,7 @@ const DogCafeDetail: React.FC = () => {
 
     try {
       const response = await fetch(url, {
-        method,
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body,
       });
