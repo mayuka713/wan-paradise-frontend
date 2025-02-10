@@ -48,6 +48,7 @@ const DogRunDetail: React.FC = () => {
 
   useEffect(() => {
     const userIdFromCookie = getUserIdFromCookie();
+    console.log("取得した user_id:", userIdFromCookie);
       setUserId(userIdFromCookie);
   }, []);
   
