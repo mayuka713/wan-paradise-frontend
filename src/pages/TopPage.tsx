@@ -18,7 +18,7 @@ import Button from "../components/Button";
 const TopPage: React.FC = () => {
 
   const [isMobile, setIsMobile] = useState(false);
-  const [ showTitle, setShowTitle ] = useState(false);
+  const [showTitle, setShowTitle] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const TopPage: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowTitle(true);
-    }, );
+    },);
 
     setTimeout(() => {
       setShowScroll(true);
@@ -79,10 +79,10 @@ const TopPage: React.FC = () => {
         }
       >
         {isMobile ? (
-          
+
           // スマホ用レイアウト
-        <div className="scroll-content">
-          <Button/>
+          <div className="scroll-content">
+            <Button />
             <Link to="/dogrun" className="fade-in">
               <img src={dogrunNameTag} alt="ドッグランネームタグ" />
               <img
@@ -108,8 +108,8 @@ const TopPage: React.FC = () => {
               />
             </Link>
             <Link to="/hospital" className="fade-in">
-              <img src={hospitalNameTag} alt="病院ネームタグ"/>
-              <img 
+              <img src={hospitalNameTag} alt="病院ネームタグ" />
+              <img
                 src={hospitalImage} alt="病院のイラスト" className="item" />
             </Link>
           </div>
