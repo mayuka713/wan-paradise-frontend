@@ -72,8 +72,6 @@ const MyPage: React.FC = () => {
       setUserName(formUserName);
       setEmail(formEmail);
       setPassword("");
-
-      //モーダルを開く
       setIsModalOpen(true);
     } catch (error) {
       console.error("エラー発生:", error);
