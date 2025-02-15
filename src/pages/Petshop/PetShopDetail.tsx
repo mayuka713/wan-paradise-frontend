@@ -88,7 +88,9 @@ const PetShopDetail: React.FC = () => {
       try {
         if (!userId) return;
 
-        const favoriteResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${userId}`);
+        const favoriteResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${userId}`,
+          { credentials: "include", 
+          });
         if (favoriteResponse.ok) {
           const favoriteData: { store_id: number }[] = await favoriteResponse.json();
           setIsFavorite(favoriteData.some((fav) => fav.store_id === Number(id)));
@@ -118,6 +120,7 @@ const PetShopDetail: React.FC = () => {
       const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body,
       });
       if (!response.ok) throw new Error("お気に入りの更新に失敗しました");
