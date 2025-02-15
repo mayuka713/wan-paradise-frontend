@@ -33,7 +33,6 @@ const MyPage: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
