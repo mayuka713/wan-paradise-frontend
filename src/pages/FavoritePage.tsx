@@ -35,7 +35,7 @@ const FavoritePage: React.FC = () => {
       if (name === "user_id") {
         const parsedValue = parseInt(decodeURIComponent(value), 10); // URIデコードしてから数値に変換
         return isNaN(parsedValue) ? null : parsedValue; // NaNの場合はnullを返す
-        console.log("mayuka");
+        console.log(user_id);
       }
     }
     return null; // 該当するクッキーが存在しない場合
@@ -48,28 +48,31 @@ const FavoritePage: React.FC = () => {
 
 
   useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${user_id}`, {
-          method: "GET",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        });
+    if (user_id !== null) {
+      const fetchFavorites = async () => {
+        try {
+          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${user_id}`, {
+            method: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+          });
 
-        if (!response.ok) {
-          throw new Error("エラーが返されました");
+          if (!response.ok) {
+            throw new Error("エラーが返されました");
+          }
+
+          const data = await response.json();
+          if (!Array.isArray(data)) {
+            throw new Error("予想しないデータ形式");
+          }
+          setFavorites(data);
+        } catch (error) {
+          console.error(error);
         }
+      };
 
-        const data = await response.json();
-        if (!Array.isArray(data)) {
-          throw new Error("予想しないデータ形式");
-        }
-        setFavorites(data);
-      } catch (error) {
-      }
-    };
-
-    fetchFavorites();
+      fetchFavorites();
+    }
   }, [user_id]);
 
 
@@ -118,7 +121,7 @@ const FavoritePage: React.FC = () => {
       <Header />
       <div className="favorite-container">
         <header className="app-header">
-          <h1 className="favorite-main-title">お気に入りリスト</h1>
+          <h1 className="favorite-main-title">お気に入り一覧</h1>
         </header>
         {/* カテゴリごとにリストを作成 */}
         {categorizedFavorites.map(({ category, stores }) => (

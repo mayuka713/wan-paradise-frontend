@@ -103,7 +103,7 @@ const PetShopDetail: React.FC = () => {
     }
   }, [id, userId]);
 
-  //-----------店舗情報とお気に入り状態を取得する処理
+  //店舗情報とお気に入り状態を取得する処理
   const handleFavoriteClick = async () => {
     if (!store || userId === null) return;
 
