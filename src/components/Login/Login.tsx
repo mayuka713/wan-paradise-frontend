@@ -19,12 +19,9 @@ function Login(): JSX.Element {
         body: JSON.stringify({ email, password }),
       });
       
-
-        const data = await response.json();
         if (response.ok) {
         navigate("/top");
       } else {
-        
         setErrorMessage("メールアドレスまたはパスワードが間違っています。");
       }
     } catch (error) {

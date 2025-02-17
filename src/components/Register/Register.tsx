@@ -10,10 +10,10 @@ function Register(): JSX.Element {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // useNavigateを初期化
-  
+
   // フォーム送信時の処理
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // ページのリロードを防ぐ
+    e.preventDefault();
 
     // パスワードと確認パスワードの検証
     if (password !== confirmPassword) {
@@ -25,7 +25,6 @@ function Register(): JSX.Element {
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}/auth/register`,
         {
-          //ここがAPIエンドポイント
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -34,7 +33,7 @@ function Register(): JSX.Element {
           body: JSON.stringify({ name, email, password }),
         }
       );
-      const responseData = await response.json();
+
       if (response.ok) {
         console.log("登録が完了しました");
         navigate("/"); // リダイレクト先のURLを指定
@@ -115,4 +114,3 @@ function Register(): JSX.Element {
   );
 }
 
-export default Register;
