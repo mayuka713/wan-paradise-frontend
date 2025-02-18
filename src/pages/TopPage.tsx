@@ -35,7 +35,7 @@ const TopPage: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowTitle(true);
-    }, 800);
+    },);
 
     setTimeout(() => {
       setShowScroll(true);
