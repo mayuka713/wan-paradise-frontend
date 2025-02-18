@@ -24,6 +24,7 @@ const DogrunRegionList: React.FC = () => {
         const data: Prefecture[] = await response.json();
         setPrefectures(data);
       } catch (error) {
+        console.error("Error to fetch prefectures");
       }
     };
 
@@ -35,12 +36,12 @@ const DogrunRegionList: React.FC = () => {
   };
 
   const regions = prefectures.reduce((acc: { [region: string]: Prefecture[] }, prefecture) => {
-    if (!acc[prefecture.region]) {
-      acc[prefecture.region] = [];
+    if (!acc[prefecture.region]) { //箱（地域）がまだないなら。。。
+      acc[prefecture.region] = []; //新しく空の箱を作る
     }
-    acc[prefecture.region].push(prefecture);
-    return acc;
-  }, {});
+    acc[prefecture.region].push(prefecture);//その箱に都道府県を追加
+    return acc; //更新した箱を次の処理に渡す
+  }, {}); //最初は空のオブジェクト
 
   return (
     <>

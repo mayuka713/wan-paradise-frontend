@@ -11,7 +11,6 @@ const MyPage: React.FC = () => {
   const [formUserName, setFormUserName] = useState(userName);
   const [formEmail, setFormEmail] = useState(email);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const  navigate = useNavigate();
 
   const handleLogout = async () => {

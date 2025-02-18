@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./TopPage.css";
 import HamburgerMenu from "../HamburgerMenu";
-import DogrunImage from "../pages/assets/images/Dogrun/dogrun.top.png";
-import dogcafeImage from "../pages/assets/images/Dogcafe/dogcafe.top.png";
-import petshopImage from "../pages/assets/images/Petshop/petshop.top.png";
-import hospitalImage from "../pages/assets/images/Hospital/hospital.png";
-import dogrunNameTag from "../pages/assets/images/Dogrun/dogrun-nametag.png";
-import dogCafeNameTag from "../pages/assets/images/Dogcafe/dogcafe-nametag.png";
-import petshopNameTag from "../pages/assets/images/Petshop/petshop-nametag.png";
-import hospitalNameTag from "../pages/assets/images/Hospital/hospital-nametag.png";
+import DogrunImage from "../../assets/images/Dogrun/dogrun.top.png";
+import dogcafeImage from "../../assets/images/Dogcafe/dogcafe.top.png";
+import petshopImage from "../../assets/images/Petshop/petshop.top.png";
+import hospitalImage from "../../assets/images/Hospital/hospital.png";
+import dogrunNameTag from "../../assets/images/Dogrun/dogrun-nametag.png";
+import dogCafeNameTag from "../../assets/images/Dogcafe/dogcafe-nametag.png";
+import petshopNameTag from "../../assets/images/Petshop/petshop-nametag.png";
+import hospitalNameTag from "../../assets/images/Hospital/hospital-nametag.png";
 import Header from "./Header";
 import Footer from "./Footer";
 import Button from "../components/Button";
-
 
 const TopPage: React.FC = () => {
 
@@ -30,12 +29,13 @@ const TopPage: React.FC = () => {
     handleResize(); // 初回実行
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  },
+  []);
 
   useEffect(() => {
     setTimeout(() => {
       setShowTitle(true);
-    },);
+    }, 800);
 
     setTimeout(() => {
       setShowScroll(true);
