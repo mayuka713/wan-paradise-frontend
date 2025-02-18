@@ -22,7 +22,7 @@ const DogrunRegionList: React.FC = () => {
           throw new Error("Failed to fetch prefectures");
         }
         const data: Prefecture[] = await response.json();
-        setPrefectures(data);
+        setPrefectures(data); //バックエンドからのres.json(result.rows)でフロントへ返す。フロントがレスポンスを受け取って
       } catch (error) {
         console.error("Error to fetch prefectures");
       }
