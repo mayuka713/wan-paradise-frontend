@@ -101,7 +101,6 @@ const HospitalStoreList: React.FC = () => {
       fetchStores();
     },[prefectureId, selectedTagIds]);
 
-//----------------------------
   return (
     <>
       <Header />
@@ -145,14 +144,12 @@ const HospitalStoreList: React.FC = () => {
                           key={storeItem.store_id}>
                       {/* 店舗画像 */}
                         <ImageSlider images={storeItem.store_img} />
-
                       {/* 星評価の表示 */}
                       <div className="star-rating-container">
                           <div className="stars-background-storelist">★★★★★</div>
                           <div className="stars-filled-storelist" style={{ width: `${(averageRating / 5) * 100}%` }}>★★★★★</div>
                         <span className="average-rating-value-storelist">{averageRating.toFixed(1)}</span>
                       </div>
-
                       {/* 店舗情報 */}
                       <h3 className="store-name-storelist">{storeItem.store_name}</h3>
                       <p>{storeItem.store_description}</p>

@@ -71,7 +71,7 @@ const DogCafeStoreList: React.FC = () => {
     );
   }, [prefectureId]);
 
-// タグ選択のハンドリング
+// タグ選択の処理
   const handleTagClick = (tagId: number) => {
     setSelectedTagIds((prev) => {
       if (prev.includes(tagId)) {

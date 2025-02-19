@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import "./DogRunStoreList.css";
 import Header from "../Header";
 import Footer from "../Footer";
+import "./DogRunStoreList.css";
 import "../Header.css";
 import ImageSlider from "../../ImageSlider";
-
 
 interface Store {
   store_id: number;
@@ -77,8 +76,13 @@ const DogRunStoreList: React.FC = () => {
 
   // タグ選択の処理
   const handleTagClick = (tagId: number) => {
-    setSelectedTagIds((prev) =>
-      prev.includes(tagId) ? prev.filter((id) => id !== tagId) : [...prev, tagId]);
+    setSelectedTagIds((prev) => {
+      if (prev.includes(tagId)) {
+        return prev.filter((id) => id !== tagId);
+      } else {
+        return [...prev, tagId];
+      }
+    });
   };
 
   // 店舗データの取得
@@ -175,21 +179,21 @@ const DogRunStoreList: React.FC = () => {
 
                         {/* 星評価の表示 */}
                         <div className="star-rating-container">
-                            <div className="stars-background-storelist">★★★★★</div>
-                            <div
-                              className="stars-filled-storelist"
-                              style={{
-                                width: `${(averageRating / 5) * 100}%` 
-                                }}> 
-                              ★★★★★
-                            </div>
+                          <div className="stars-background-storelist">★★★★★</div>
+                          <div
+                            className="stars-filled-storelist"
+                            style={{
+                              width: `${(averageRating / 5) * 100}%`
+                            }}>
+                            ★★★★★
+                          </div>
                           <span className="average-rating-value-storelist">
                             {averageRating.toFixed(1)}
                           </span>
                         </div>
                         <h3 className="store-name-storelist">{storeItem.store_name}</h3>
                         <p className="store-description">
-                        {storeItem.store_description}</p>
+                          {storeItem.store_description}</p>
                         <p><strong>住所: </strong>{storeItem.store_address}</p>
                         <p><strong>電話: </strong> {storeItem.store_phone_number}</p>
                         <p><strong>営業時間: </strong>{storeItem.store_opening_hours}</p>

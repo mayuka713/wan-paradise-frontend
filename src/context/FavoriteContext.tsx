@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 export interface FavoriteItem {
   id: number;
@@ -15,18 +15,35 @@ interface FavoriteContextType {
 const FavoriteContext = createContext<FavoriteContextType | undefined>(undefined);
 
 export const FavoriteProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
- //お気に入りを追加
+  const [favorites, setFavorites] = useState<FavoriteItem[]>(() => {
+      
+  const savedFavorites = localStorage.getItem("favorites");
+  return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
+
+  //お気に入りリストを更新するたびにlocalStorageに保存
+  useEffect(()=> {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  //お気に入りを追加
   const addFavorite = (item: FavoriteItem) => {
-    setFavorites((prev) => [...prev, item]);
+    setFavorites((prev) => {
+      //すでにお気に入りがあるときは追加しない
+      if (prev.some((fav) => fav.id === item.id)) {
+        return prev;
+      }
+      return [...prev, item];
+    });
   };
-//おき入りを削除
+
+  //お気入りを削除
   const removeFavorite = (id: number) => {
     setFavorites((prev) => prev.filter(item => item.id !== id));
   };
 
   return (
-    <FavoriteContext.Provider value={{ favorites, addFavorite,removeFavorite}}>
+    <FavoriteContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
       {children}
     </FavoriteContext.Provider>
   );
