@@ -5,6 +5,7 @@
   /* 中央配置 */
   padding: 20px;
   border-radius: 8px;
+  font-family: "Noto Sans JP", serif;
 }
 
 .detail-title {
@@ -161,7 +162,9 @@
     font-size: 14px;
     padding: 8px;
   }
-
+ .official-site {
+  margin-bottom: 30px;
+ }
   iframe {
     height: 250px;
   }
