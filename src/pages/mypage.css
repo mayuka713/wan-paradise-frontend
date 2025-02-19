@@ -1,6 +1,6 @@
 .mypage-container {
   margin: 0 auto;
-  font-family: "Zen Kaku Gothic New","Noto Sans JP", serif;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif;
 }
 
 .mypage-title {
@@ -52,7 +52,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .favorite-mypage {
@@ -111,16 +111,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
-.logout-container{
+.logout-container {
   display: flex;
   justify-content: center;
 }
 
 
-.logout-button{
+.logout-button {
   position: relative;
   display: flex;
   justify-content: center;
@@ -185,13 +185,13 @@
 
 @media (max-width: 480px) {
   .mypage-container {
-    padding: 10px;
+    padding: 70px;
     max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* 縦方向の中央揃え */
+    min-height: 100vh;
   }
 
   .mypage-title {
@@ -200,7 +200,7 @@
     margin-bottom: 20px;
   }
 
- 
+
   .profile-update-form {
     display: flex;
     flex-direction: column;
@@ -208,14 +208,15 @@
     align-items: center;
     width: 100%;
     max-width: 300px;
-    margin: 0 auto; /* 横方向の中央揃え */
+    margin: 0 auto;
+    /* 横方向の中央揃え */
   }
 
- .profile-update-form input,
- .profile-update-form button {
-  max-width: 100%;
-  font-size: 0.9rem;
- }
+  .profile-update-form input,
+  .profile-update-form button {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
 
 
 }
