@@ -72,13 +72,15 @@ const DogCafeStoreList: React.FC = () => {
   }, [prefectureId]);
 
 // タグ選択のハンドリング
-const handleTagClick = (tagId: number) => {
-  setSelectedTagIds((prev) =>
-    prev.includes(tagId)
-      ? prev.filter((id) => id !== tagId)
-      : [...prev, tagId]
-  );
-};
+  const handleTagClick = (tagId: number) => {
+    setSelectedTagIds((prev) => {
+      if (prev.includes(tagId)) {
+        return prev.filter((id) => id!== tagId);
+      } else {
+        return [...prev, tagId];
+      }
+    });
+  };
 
   // 店舗データ取得し、画面に反映する
   useEffect(() => {
