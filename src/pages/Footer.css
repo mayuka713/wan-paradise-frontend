@@ -2,7 +2,6 @@
   bottom: 0;
   width: 100%;
   text-align: center;
-  margin: 200px 10px 0 0;
 }
 
 @media (max-width: 480px) {
@@ -10,5 +9,6 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+    margin-top: 10px;
   }
 }
