@@ -6,6 +6,7 @@ body {
 }
 
 .App-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
@@ -15,6 +16,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
 }
 .header-link {
   font-size: 1.5rem;
