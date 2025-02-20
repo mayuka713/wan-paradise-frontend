@@ -93,6 +93,9 @@ const StoreList: React.FC<StoreListProps> = ({
         ? prev.filter((id) => id !== tagId)
         : [...prev, tagId];
       console.log("Selected tags:", updated);
+
+
+      console.log("選択されたタグID:", updated); // ✅ デバッグ: タグの変更を確認 
       return updated;
     });
   };
@@ -133,6 +136,10 @@ const StoreList: React.FC<StoreListProps> = ({
         setStore([]); // エラー時も安全のため空配列をセット
       }
     };
+
+    useEffect(() => {
+      fetchStores();
+    }, [prefectureId, selectedTagIds]); 
     
   return (
     <>
