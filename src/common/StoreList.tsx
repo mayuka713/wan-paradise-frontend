@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
 import ImagesSlider from "../ImageSlider";
+import "../common/StoreList.css"
 
 interface Store {
   store_id: number;
@@ -153,19 +154,19 @@ const StoreList: React.FC<StoreListProps> = ({
               {selectedPrefecture}の{title}
             </h2>
             <p className="search-tags">{title}の条件を選ぶ</p>
-            <div className="tags">
-              {tags.map((tag) => (
-                <button
-                  key={tag.id}
-                  onClick={() => handleTagClick(tag.id)}
-                  className={`tag-button ${
-                    selectedTagIds.includes(tag.id) ? "selected" : ""
-                  } `}
-                >
-                  {tag.name}
-                </button>
-              ))}
-            </div>
+              <div className="tags">
+                {tags.map((tag) => (
+                  <button
+                    key={tag.id}
+                    onClick={() => handleTagClick(tag.id)}
+                    className={`tag-button ${
+                      selectedTagIds.includes(tag.id) ? "selected" : ""
+                    } `}
+                  >
+                    {tag.name}
+                  </button>
+                ))}
+              </div>
 
             {error ? (
               <p className="error-message">{error}</p>

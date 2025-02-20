@@ -1,0 +1,37 @@
+.content {
+  padding: 20px;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif;
+  background-color: #f9f9f9;
+}
+
+.tag-button {
+  display: inline-block;
+  color: #333;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tag-button.selected {
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+  .store-item {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .search-tags {
+    font-size: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
