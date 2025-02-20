@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
@@ -111,7 +111,7 @@ const StoreList: React.FC<StoreListProps> = ({
   }, [prefectureId]);
 
   // 店舗データの取得
-    const fetchStores = async () => {
+    const fetchStores = useCallback(async () => {
       try {
         let url = `${process.env.REACT_APP_BASE_URL}/stores/list/${prefectureId}/${storeType}`;
         if (selectedTagIds.length > 0) {
@@ -135,11 +135,11 @@ const StoreList: React.FC<StoreListProps> = ({
         console.error("店舗データ取得エラー:", error);
         setStore([]); // エラー時も安全のため空配列をセット
       }
-    };
+    }, [prefectureId, selectedTagIds, storeType]);
 
     useEffect(() => {
       fetchStores();
-    }, [prefectureId, selectedTagIds]); 
+    }, [fetchStores]); 
     
   return (
     <>
