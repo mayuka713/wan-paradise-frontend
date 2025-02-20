@@ -174,11 +174,7 @@ const StoreList: React.FC<StoreListProps> = ({
                       : 0;
             
                   return (
-                    <Link
-                      to={generateDetailPageUrl(storeType, storeItem.store_id)}
-                      className="store-item"
-                      key={storeItem.store_id}
-                    >
+                  <div className="store-item" key={storeItem.store_id}>
                       <ImagesSlider images={storeItem.store_img} />
                       <div className="star-rating-container">
                         <div className="stars-background-storelist">★★★★★</div>
@@ -192,7 +188,7 @@ const StoreList: React.FC<StoreListProps> = ({
                       <p><strong>住所:</strong> {storeItem.store_address}</p>
                       <p><strong>電話:</strong> {storeItem.store_phone_number}</p>
                       <p><strong>営業時間:</strong> {storeItem.store_opening_hours}</p>
-                    </Link>
+                      </div>
                   );
                 })
               ) : (

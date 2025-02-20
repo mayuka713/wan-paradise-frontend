@@ -10,6 +10,7 @@
   border: 1px solid #ddd;
   background-color: #fff;
   padding: 10px 15px;
+  max-width: 7px;
   border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
@@ -20,6 +21,72 @@
 .tag-button.selected {
   background-color: #f0f0f0;
 }
+
+.store-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.store-item {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.store-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.images-slider {
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.images-slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.store-item p {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+
+.start-rating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.star-background-storelist {
+  position: relative;
+  color: #ccc;
+  font-size: 20px;
+}
+
+.start-filled-storelist {
+  position: absolute;
+  color: #FFD700;
+  overflow: hidden;
+}
+
 
 @media (max-width: 480px) {
   .store-item {
