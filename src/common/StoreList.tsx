@@ -108,32 +108,32 @@ const StoreList: React.FC<StoreListProps> = ({
   }, [prefectureId]);
 
   // 店舗データの取得
-  useEffect(() => {
     const fetchStores = async () => {
       try {
         let url = `${process.env.REACT_APP_BASE_URL}/stores/list/${prefectureId}/${storeType}`;
         if (selectedTagIds.length > 0) {
-          url = `${
-            process.env.REACT_APP_BASE_URL
-          }/stores/list/tag/${prefectureId}?tagIds=${selectedTagIds.join(",")}`;
+          url = `${process.env.REACT_APP_BASE_URL}/stores/list/tag/${prefectureId}/${storeType}?tagIds=${selectedTagIds.join(",")}`;
         }
-        console.log("Fetching stores from URL", url);
-        
+    
+        console.log("Fetching stores from URL:", url);
+    
         const response = await fetch(url);
         const data = await response.json();
-        
-        console.log("APIレスポンス:", data); // ✅ APIのレスポンスをデバッグ
-
-        setStore(data);
-        setError(null);
+    
+        console.log("APIレスポンス:", data);
+    
+        if (Array.isArray(data)) {
+          setStore(data);
+        } else {
+          console.error("APIレスポンスが配列ではありません:", data);
+          setStore([]); // エラー回避のため、デフォルトで空配列をセット
+        }
       } catch (error) {
         console.error("店舗データ取得エラー:", error);
-        setError("該当する店舗がありません");
+        setStore([]); // エラー時も安全のため空配列をセット
       }
     };
-    fetchStores();
-  }, [prefectureId, selectedTagIds]);
-
+    
   return (
     <>
       <Header />
@@ -164,57 +164,41 @@ const StoreList: React.FC<StoreListProps> = ({
               <p className="error-message">{error}</p>
             ) : (
               <div className="store-list">
-                {store && store.length === 0 ? (
-                  <p>{noDataMessage}</p>
-                ) : (
-                  store?.map((storeItem) => {
-                    const reviews = storeItem.reviews ?? [];
-                    const averageRating =
-                      reviews.length > 0
-                        ? reviews.reduce(
-                            (sum, review) => sum + (review.rating || 0),
-                            0
-                          ) / reviews.length
-                        : 0;
-
-                    return (
-                      <Link
-                        to={generateDetailPageUrl(storeType, storeItem.store_id)}
-                        className="store-item"
-                        key={storeItem.store_id}
-                      >
-                        <ImagesSlider images={storeItem.store_img} />
-                        <div className="star-rating-container">
-                          <div className="stars-background-storelist">
-                            ★★★★★
-                          </div>
-                          <div
-                            className="stars-filled-storelist"
-                            style={{ width: `${(averageRating / 5) * 100}%` }}
-                          >
-                            ★★★★★
-                          </div>
-                          <span className="average-rating-value-storelist">
-                            {averageRating.toFixed(1)}
-                          </span>
+              {Array.isArray(store) && store.length > 0 ? (
+                store.map((storeItem) => {
+                  const reviews = storeItem.reviews ?? [];
+                  const averageRating =
+                    reviews.length > 0
+                      ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / reviews.length
+                      : 0;
+            
+                  return (
+                    <Link
+                      to={generateDetailPageUrl(storeType, storeItem.store_id)}
+                      className="store-item"
+                      key={storeItem.store_id}
+                    >
+                      <ImagesSlider images={storeItem.store_img} />
+                      <div className="star-rating-container">
+                        <div className="stars-background-storelist">★★★★★</div>
+                        <div className="stars-filled-storelist" style={{ width: `${(averageRating / 5) * 100}%` }}>
+                          ★★★★★
                         </div>
-                        <h3>{storeItem.store_name}</h3>
-                        <p>{storeItem.store_description}</p>
-                        <p>
-                          <strong>住所:</strong> {storeItem.store_address}
-                        </p>
-                        <p>
-                          <strong>電話:</strong> {storeItem.store_phone_number}
-                        </p>
-                        <p>
-                          <strong>営業時間:</strong>{" "}
-                          {storeItem.store_opening_hours}
-                        </p>
-                      </Link>
-                    );
-                  })
-                )}
-              </div>
+                        <span className="average-rating-value-storelist">{averageRating.toFixed(1)}</span>
+                      </div>
+                      <h3>{storeItem.store_name}</h3>
+                      <p>{storeItem.store_description}</p>
+                      <p><strong>住所:</strong> {storeItem.store_address}</p>
+                      <p><strong>電話:</strong> {storeItem.store_phone_number}</p>
+                      <p><strong>営業時間:</strong> {storeItem.store_opening_hours}</p>
+                    </Link>
+                  );
+                })
+              ) : (
+                <p>該当する店舗がありません。</p>
+              )}
+            </div>
+            
             )}
           </>
         )}
