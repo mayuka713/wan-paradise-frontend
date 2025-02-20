@@ -1,20 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
 .content {
+  text-align: center;
   padding: 20px;
   font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif;
   background-color: #f9f9f9;
 }
 
 .tag-button {
-  display: inline-block;
   color: #333;
   border: 1px solid #ddd;
   background-color: #fff;
-  padding: 10px 15px;
-  max-width: 7px;
+  padding: 9px 22px 11px 20px;
+  margin: 7px;
   border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -23,23 +29,26 @@
 }
 
 .store-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  justify-content: center;
-  align-items: flex-start;
+  padding: 30px;
 }
 
 .store-item {
-  width: 100%;
-  max-width: 600px;
-  background: #fff;
-  padding: 20px;
+  display: block;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  background-color: #fff;
+  margin: 15px 0;
+  padding: 15px;
+  text-decoration: none;
+  color: #333;
 }
-
+.store-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 .store-item img {
   width: 100%;
   height: auto;
@@ -63,7 +72,6 @@
 .store-item p {
   font-size: 14px;
   line-height: 1.5;
-  text-align: left;
   word-wrap: break-word;
 }
 
@@ -76,9 +84,8 @@
 }
 
 .star-background-storelist {
-  position: relative;
+  position: absolute;
   color: #ccc;
-  font-size: 20px;
 }
 
 .start-filled-storelist {
