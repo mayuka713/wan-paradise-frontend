@@ -72,7 +72,11 @@ const StoreList: React.FC<StoreListProps> = ({
           throw new Error("タグ情報の取得に失敗しました");
         }
         const data: Tag[] = await response.json();
+
+        console.log("Fetched tags:", data);
+
         const filteredTags = data.filter((tag) => tag.tag_type === tagType);
+        console.log(`Filtered tags for tagType ${tagType}:`, filteredTags);
         setTags(filteredTags);
       } catch (error) {
         console.error(error);
@@ -84,13 +88,15 @@ const StoreList: React.FC<StoreListProps> = ({
 
   // タグの選択処理
   const handleTagClick = (tagId: number) => {
-    setSelectedTagIds((prev) =>
-      prev.includes(tagId)
+    setSelectedTagIds((prev) => {
+      const updated = prev.includes(tagId)
         ? prev.filter((id) => id !== tagId)
-        : [...prev, tagId]
-    );
+        : [...prev, tagId];
+      console.log("Selected tags:", updated);
+      return updated;
+    });
   };
-
+  
   // 都道府県名を設定
   useEffect(() => {
     const prefectureNames: { [key: string]: string } = {
@@ -111,11 +117,13 @@ const StoreList: React.FC<StoreListProps> = ({
             process.env.REACT_APP_BASE_URL
           }/stores/list/tag/${prefectureId}?tagIds=${selectedTagIds.join(",")}`;
         }
+        console.log("Fetching stores from URL", url);
+        
         const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("データ取得に失敗しました");
-        }
         const data = await response.json();
+        
+        console.log("APIレスポンス:", data); // ✅ APIのレスポンスをデバッグ
+
         setStore(data);
         setError(null);
       } catch (error) {
