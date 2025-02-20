@@ -33,7 +33,22 @@ interface StoreListProps {
   title: string;
   tagType: number;
   noDataMessage: string;
-}
+  }
+
+  const generateDetailPageUrl = (storeType: number, storeId: number) => {
+    switch (storeType) {
+      case 1:
+        return `/dogrun/detail/${storeId}`;
+      case 2:
+        return `/dogcafe/detail/${storeId}`;
+      case 3:
+        return `/petshop/detail/${storeId}`;
+      case 4:
+        return `/hospital/detail/${storeId}`;
+      default:
+        return `/detail/${storeId}`;
+    }
+  };
 
 const StoreList: React.FC<StoreListProps> = ({
   storeType,
@@ -156,7 +171,7 @@ const StoreList: React.FC<StoreListProps> = ({
 
                     return (
                       <Link
-                        to={`/${storeType}/detail/${storeItem.store_id}`}
+                        to={generateDetailPageUrl(storeType, storeItem.store_id)}
                         className="store-item"
                         key={storeItem.store_id}
                       >
