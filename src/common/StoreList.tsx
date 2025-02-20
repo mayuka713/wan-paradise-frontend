@@ -32,7 +32,7 @@ interface Tag {
 interface StoreListProps {
   storeType: number;
   title: string;
-  tagType: number;
+  tagType: number[];
   noDataMessage: string;
   }
 
@@ -76,7 +76,7 @@ const StoreList: React.FC<StoreListProps> = ({
 
         console.log("Fetched tags:", data);
 
-        const filteredTags = data.filter((tag) => tag.tag_type === tagType);
+        const filteredTags = data.filter((tag) => tagType.includes(tag.tag_type));
         console.log(`Filtered tags for tagType ${tagType}:`, filteredTags);
         setTags(filteredTags);
       } catch (error) {
@@ -93,10 +93,7 @@ const StoreList: React.FC<StoreListProps> = ({
       const updated = prev.includes(tagId)
         ? prev.filter((id) => id !== tagId)
         : [...prev, tagId];
-      console.log("Selected tags:", updated);
-
-
-      console.log("選択されたタグID:", updated); // ✅ デバッグ: タグの変更を確認 
+      console.log("選択されたタグID:", updated); 
       return updated;
     });
   };
@@ -116,15 +113,11 @@ const StoreList: React.FC<StoreListProps> = ({
       try {
         let url = `${process.env.REACT_APP_BASE_URL}/stores/list/${prefectureId}/${storeType}`;
         if (selectedTagIds.length > 0) {
-          url = `${process.env.REACT_APP_BASE_URL}/stores/list/tag/${prefectureId}/${storeType}?tagIds=${selectedTagIds.join(",")}`;
+          url += `?tagIds=${selectedTagIds.join(",")}`;
         }
-    
-        console.log("Fetching stores from URL:", url);
     
         const response = await fetch(url);
         const data = await response.json();
-    
-        console.log("APIレスポンス:", data);
     
         if (Array.isArray(data)) {
           setStore(data);
