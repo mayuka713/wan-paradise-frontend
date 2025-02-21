@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useModal } from "../../context/ModalContext"; // useModal を使用
+import { useModal } from "../../context/ModalContext"; 
 import "./DogRunReviewList.css";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -20,7 +20,7 @@ const DogRunReviewList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [averageRating, setAverageRating] = useState<number>(0);
   const [storeName, setStoreName] = useState<string>("");
-  const { openModal } = useModal(); // モーダルを開く関数
+  const { openModal } = useModal(); 
 
   useEffect(() => {
     if (!storeId) return; // storeId が存在しない場合は処理を中断
@@ -31,8 +31,6 @@ const DogRunReviewList: React.FC = () => {
         if (!response.ok) throw new Error("口コミの取得に失敗しました");
 
         const data: Review[] = await response.json();
-        console.log("Fetched Reviews Data:", data); // 取得したデータを確認
-
         setReviews(data);
 
         if (data.length > 0) {

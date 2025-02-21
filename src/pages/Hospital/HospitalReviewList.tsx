@@ -89,7 +89,6 @@ const HospitalReviewList: React.FC = () => {
         );
         const newAverageRating = totalRating / updatedReviews.length;
         setAverageRating(Math.min(newAverageRating, 5)); // 平均評価を更新
-
         return updatedReviews; // 更新されたレビューリストを `setReviews` にセット
       });
       
