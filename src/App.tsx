@@ -9,6 +9,7 @@ import { ModalProvider } from "./context/ModalContext";
 import HamburgerMenu from "./HamburgerMenu";
 import MyPage from "./pages/Mypage";
 
+
 // ドッグランのページ
 import DogRunPage from "./pages/Dogrun/DogRunPage";
 import DogrunRegionList from "./pages/Dogrun/DogrunRegionList";
@@ -57,14 +58,14 @@ const Layout = () => {
 
         {/* ドッグランページ */}
         <Route path="/dogrun" element={<DogRunPage />} />
-        <Route path="/dogrun-regions-list" element={<DogrunRegionList />} />
+        <Route path="/DogrunRegionsList" element={<DogrunRegionList />} />
         <Route path="/dogrun/:prefectureId" element={<DogRunStoreList />} />
         <Route path="/dogrun/detail/:id" element={<DogRunDetail />} />
         <Route path="/dogrun/reviews/:storeId" element={<DogRunReview />} />
 
         {/* ドッグカフェページ */}
         <Route path="/dogcafe" element={<DogcafePage />} />
-        <Route path="/dogcafe-regions-list" element={<DogCafeRegionList />} />
+        <Route path="/DogCafeRegionList" element={<DogCafeRegionList />} />
         <Route path="/dogcafe/:prefectureId" element={<DogCafeStoreList />} />
         <Route path="/dogcafe/detail/:id" element={<DogCafeDetail />} />
         <Route path="/dogcafe/reviews/:storeId" element={<DogCafeReview />} />
@@ -78,12 +79,13 @@ const Layout = () => {
 
         {/* 病院ページ */}
         <Route path="/hospital" element={<HospitalPage />} />
-        <Route path="/hospital-regions-list" element={<HospitalRegionList />} />
+        <Route path="/hospitalregionsList" element={<HospitalRegionList />} />
         <Route path="/hospital/:prefectureId" element={<HospitalStoreList />} />
         <Route path="/hospital/detail/:id" element={<HospitalDetail />} />
         <Route path="/hospital/reviews/:storeId" element={<HospitalReview />} />
-        {/* マイページ */}
+
         <Route path="/mypage" element = {<MyPage/>} />
+
       </Routes>
     </>
   );
