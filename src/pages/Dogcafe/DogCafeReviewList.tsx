@@ -135,7 +135,7 @@ const DogCafeReviewList: React.FC = () => {
                   ★
                 </span>
               ))}
-              <strong style={{ marginLeft: "8px" }}>{review.rating}</strong>
+              <strong style={{ marginLeft: "8px" }}>{review.rating.toFixed(1)}</strong>
             </div>
             <p className="review-comment">{review.comment}</p>
           </div>
