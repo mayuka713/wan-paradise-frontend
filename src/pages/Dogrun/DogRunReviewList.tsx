@@ -92,7 +92,6 @@ const DogRunReviewList: React.FC = () => {
           0
         );
         const newAverageRating = totalRating / updatedReviews.length;
-        console.log("Star Fill Width:", `${(averageRating / 5) * 100}%`);
 
         setAverageRating(Math.min(newAverageRating, 5)); // 平均評価を更新
         return updatedReviews;

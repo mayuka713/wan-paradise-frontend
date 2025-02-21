@@ -27,22 +27,21 @@ const DogCafeReviewList: React.FC = () => {
 
     const fetchReviews = async () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/reviews/${storeId}`
-        );
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/reviews/${storeId}`);
         if (!response.ok) throw new Error("口コミの取得に失敗しました");
 
         const data = await response.json();
         setReviews(data);
 
         if (data.length > 0) {
-          const avgRating =
-            data.reduce((sum: number, review: Review) => sum + review.rating, 0) /
-            data.length;
+          const totalRating = data.reduce(
+            (sum: number, review: Review) => sum + review.rating,0);
+          const avgRating = totalRating / data.length;
           setAverageRating(Math.min(avgRating, 5)); // 5を超えないように制限
+        } else {
+          setAverageRating(0);
         }
       } catch (err) {
-        console.error("エラー詳細:", err);
         setError("口コミの取得に失敗しました");
       }
     };
@@ -57,7 +56,6 @@ const DogCafeReviewList: React.FC = () => {
         const data = await response.json();
         setStoreName(data.store_name);
       } catch (err) {
-        console.error("エラー詳細:", err);
         setError("店舗情報の取得に失敗しました");
       }
     };
@@ -69,7 +67,7 @@ const DogCafeReviewList: React.FC = () => {
   // 口コミを投稿する関数
   const handleReviewSubmit = async (rating: number, comment: string) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/reviews/${storeId}`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/reviews`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
@@ -83,19 +81,20 @@ const DogCafeReviewList: React.FC = () => {
         throw new Error("コメント投稿に失敗しました");
       }
 
-      const newReview = await response.json();
-      
+    const newReview = await response.json();
+
       setReviews((prevReviews) => {
         const updatedReviews = [newReview, ...prevReviews]; // 新しい口コミを追加
-        const newAverageRating =
-          updatedReviews.reduce((sum: number, rev: Review) => sum + rev.rating, 0) /
-          updatedReviews.length;
+        const totalRating = updatedReviews.reduce(
+          (sum: number, rev: Review) => sum + rev.rating, 0
+        );
+        const newAverageRating = totalRating / updatedReviews.length;
 
-        setAverageRating(newAverageRating); // 平均評価を更新
+        setAverageRating(Math.min(newAverageRating, 5)); // 平均評価を更新
 
         return updatedReviews; // 更新されたレビューリストを `setReviews` にセット
       });
-      
+
     } catch (err) {
       console.error("エラー詳細:", err);
       setError("コメント投稿に失敗しました");
@@ -112,9 +111,8 @@ const DogCafeReviewList: React.FC = () => {
           <div className="review-star-background">★★★★★</div>
           <div
             className="review-star-filled"
-            style={{ 
-              width: `${(averageRating / 5) * 100}%`,
-            }}
+            style={{
+              width: `${(averageRating / 5) * 100}%`}}
           >
             ★★★★★
           </div>
@@ -125,8 +123,6 @@ const DogCafeReviewList: React.FC = () => {
         <button onClick={() => openModal(storeName)} className="click-review-button">
           投稿
         </button>
-
-        {error && <p className="error-message">{error}</p>}
 
         {reviews.map((review) => (
           <div key={review.id} className="review-card">
@@ -145,7 +141,7 @@ const DogCafeReviewList: React.FC = () => {
           </div>
         ))}
       </div>
-    <Footer/>
+      <Footer />
       {/* モーダルを表示、onSubmitを渡す */}
       <Modal onSubmit={handleReviewSubmit} />
     </>

@@ -36,8 +36,10 @@ const HospitalReviewList: React.FC = () => {
         if (data.length > 0) {
           const totalRating = data.reduce(
             (sum: number, review: Review) => sum + review.rating, 0);
-          const avgRating = totalRating / data.length; 
+          const avgRating = totalRating / data.length;
           setAverageRating(Math.min(avgRating, 5)); // 5を超えないように制限
+        } else {
+          setAverageRating(0);
         }
       } catch (err) {
         setError("口コミの取得に失敗しました");
@@ -80,8 +82,8 @@ const HospitalReviewList: React.FC = () => {
         throw new Error("コメント投稿に失敗しました");
       }
 
-      const newReview : Review = await response.json();
-      
+      const newReview: Review = await response.json();
+
       setReviews((prevReviews) => {
         const updatedReviews = [newReview, ...prevReviews]; // 新しい口コミを追加
         const totalRating = updatedReviews.reduce(
@@ -91,9 +93,7 @@ const HospitalReviewList: React.FC = () => {
         setAverageRating(Math.min(newAverageRating, 5)); // 平均評価を更新
         return updatedReviews; // 更新されたレビューリストを `setReviews` にセット
       });
-      
     } catch (err) {
-      console.error("エラー詳細:", err);
       setError("コメント投稿に失敗しました");
     }
   };
@@ -103,13 +103,13 @@ const HospitalReviewList: React.FC = () => {
       <Header />
       <div className="review-container">
         <h1 className="store-name-review">{storeName || "店舗名を取得中..."}</h1>
-
         <div className="review-star-container">
           <div className="review-star-background">★★★★★</div>
           <div
             className="review-star-filled"
             style={{
-               width: `${(averageRating / 5) * 100}%` }}
+              width: `${(averageRating / 5) * 100}%`
+            }}
           >
             ★★★★★
           </div>
@@ -140,8 +140,8 @@ const HospitalReviewList: React.FC = () => {
           </div>
         ))}
       </div>
-      <Footer/>
-      
+      <Footer />
+
       {/* モーダルを表示、onSubmitを渡す */}
       <Modal onSubmit={handleReviewSubmit} />
     </>
