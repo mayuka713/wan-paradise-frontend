@@ -44,20 +44,27 @@ const DogCafeDetail: React.FC = () => {
           credentials: "include", // ✅ クッキーを送信
           headers: { "Content-Type": "application/json" },
         });
-
+  
         if (!response.ok) {
           throw new Error("未ログイン");
         }
-
+  
         const data = await response.json();
-        console.log("✅ `user_id` を取得:", data.user_id);
-        setUserId(data.user_id);
+        console.log("✅ ユーザーデータ:", data); // 取得したデータを表示
+  
+        // `data.user.id` から `user_id` をセット
+        if (data.user && data.user.id) {
+          console.log("✅ `user_id` を取得:", data.user.id);
+          setUserId(data.user.id);
+        } else {
+          throw new Error("ユーザーデータのフォーマットが不正");
+        }
       } catch (error) {
         console.error("❌ `user_id` の取得に失敗:", error);
         setUserId(null);
       }
     };
-
+  
     fetchUserId();
   }, []);
   
@@ -113,6 +120,10 @@ const DogCafeDetail: React.FC = () => {
       console.error("❌ store または userId が未定義:", { store, userId });
       return;
     }
+
+    console.log("✅ 現在の `store_id`:", store?.store_id);
+    console.log("✅ 現在の `user_id`:", userId);
+
   
     const url = `${process.env.REACT_APP_BASE_URL}/favorites`;
     const method = isFavorite ? "DELETE" : "POST";
