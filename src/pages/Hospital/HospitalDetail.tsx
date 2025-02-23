@@ -25,18 +25,6 @@ interface Review {
   comment: string;
 }
 
-const getUserIdFromCookie = (): number | null => {
-  const cookies = document.cookie.split(";");
-  for (let cookie of cookies) {
-    const [name, value] = cookie.split("=");
-    if (name === "user_id") {
-      const parsedValue = parseInt(value, 10);
-      return isNaN(parsedValue) ? null : parsedValue;
-    }
-  }
-  return null;
-};
-
 const HospitalDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [store, setStore] = useState<Store | null>(null);
@@ -45,11 +33,7 @@ const HospitalDetail: React.FC = () => {
   const [userId, setUserId] = useState<number | null>(0);
   const MAP_API_KEY = process.env.REACT_APP_MAP_API_KEY;
 
-  //クッキーからuserIdを取得するための関数
-  useEffect(() => {
-    const userIdFromCookie = getUserIdFromCookie();
-    setUserId(userIdFromCookie);
-  }, []);
+
 
   //店舗の口コミ
   useEffect(() => {

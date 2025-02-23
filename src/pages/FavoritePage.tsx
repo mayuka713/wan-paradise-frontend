@@ -167,34 +167,39 @@ const FavoritePage: React.FC = () => {
                     }
                     return (
                       <Link key={favorite.store_id} to={detailPage} className="favorite-link">
-                        <li className="favorite-item">
-                          <img
-                            src={typeof favorite.store_img === "string"
-                              ? favorite.store_img 
-                              : Array.isArray(favorite.store_img) &&  favorite.store_img.length > 0
-                              ? favorite.store_img[0]
-                              : "https://placehold.jp/150x150.png"}
-                            alt={favorite.store_name}
-                            className="favorite-item-img"
-                            onError={(e) => {
-                              console.log("❌ 画像が読み込めません:", e.currentTarget.src);
-                              e.currentTarget.src = "https://placehold.jp/150x150.png";
-                            }}
-                          />
-                          <h2 className="favorite-title">{favorite.store_name}</h2>
-                          <div className="review-average-favorite">
-                            {[1, 2, 3, 4, 5].map((value) => (
-                              <span
-                                key={`star-${favorite.store_id}-${value}`}
-                                className={`star ${value <= Math.round(averageRating) ? "selected" : ""}`}
-                              >
-                                ★
-                              </span>
-                            ))}
-                            <strong>{averageRating.toFixed(1)}</strong>
-                          </div>
-                        </li>
-                      </Link>
+                      <li className="favorite-item">
+                        <img
+                          src={(() => {
+                            try {
+                              const imgData = typeof favorite.store_img === "string" ? JSON.parse(favorite.store_img) : favorite.store_img;
+                              return Array.isArray(imgData) && imgData.length > 0 ? imgData[0] : "https://placehold.jp/150x150.png";
+                            } catch (error) {
+                              console.error("画像URLのパースエラー:", error);
+                              return "https://placehold.jp/150x150.png";
+                            }
+                          })()}
+                          alt={favorite.store_name}
+                          className="favorite-item-img"
+                          onError={(e) => {
+                            console.log("画像が読み込めません:", e.currentTarget.src);
+                            e.currentTarget.src = "https://placehold.jp/150x150.png";
+                          }}
+                        />
+                        <h2 className="favorite-title">{favorite.store_name}</h2>
+                        <div className="review-average-favorite">
+                          {[1, 2, 3, 4, 5].map((value) => (
+                            <span
+                              key={`star-${favorite.store_id}-${value}`}
+                              className={`star ${value <= Math.round(averageRating) ? "selected" : ""}`}
+                            >
+                              ★
+                            </span>
+                          ))}
+                          <strong>{averageRating.toFixed(1)}</strong>
+                        </div>
+                      </li>
+                    </Link>
+                    
                     );
                   })
                 ) : (
