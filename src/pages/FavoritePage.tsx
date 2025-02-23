@@ -169,11 +169,11 @@ const FavoritePage: React.FC = () => {
                       <Link key={favorite.store_id} to={detailPage} className="favorite-link">
                         <li className="favorite-item">
                           <img
-                            src={favorite.store_img || "https://placehold.jp/150x150.png"}
+                            src={Array.isArray(favorite.store_img) || "https://placehold.jp/150x150.png"}
                             alt={favorite.store_name}
                             className="favorite-item-img"
                             onError={(e) => {
-                              console.log("🖼 画像URL:", favorite.store_img);
+                              console.log("❌ 画像が読み込めません:", e.currentTarget.src);
                               e.currentTarget.src = "https://placehold.jp/150x150.png";
                             }}
                           />
