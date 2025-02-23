@@ -107,10 +107,10 @@ const DogCafeDetail: React.FC = () => {
 
   //----------------------
   const handleFavoriteClick = async () => {
-    console.log("✅ お気に入りボタンがクリックされました"); // 確認用ログ
+    console.log("✅ お気に入りボタンがクリックされました");
   
     if (!store || userId === null) {
-      console.log("❌ store または userId が未定義");
+      console.error("❌ store または userId が未定義:", { store, userId });
       return;
     }
   
@@ -121,25 +121,28 @@ const DogCafeDetail: React.FC = () => {
       store_id: store.store_id,
     });
   
-    try {
-      console.log("📡 送信リクエスト:", { url, method, body });
+    console.log("📡 送信リクエスト:", { url, method, body });
   
+    try {
       const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
+        credentials: "include", // ✅ クッキーを送信するために追加
         body,
       });
   
       console.log("📡 レスポンスステータス:", response.status);
+      console.log("📡 レスポンスボディ:", await response.text()); // エラーメッセージを取得
+  
       if (!response.ok) throw new Error("お気に入りの更新に失敗しました");
   
       setIsFavorite(!isFavorite);
       console.log("✅ お気に入り状態が更新されました:", !isFavorite);
     } catch (err) {
       console.error("❌ お気に入りの更新エラー:", err);
-      setError("お気に入りの更新に失敗しました");
     }
   };
+  
   
 
   if (error) return <div className="container">{error}</div>;
