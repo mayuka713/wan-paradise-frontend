@@ -32,14 +32,20 @@ const FavoritePage: React.FC = () => {
           credentials: "include",
           headers: { "Content-Type": "application/json" },
         });
-
+  
         if (!response.ok) {
           throw new Error("未ログイン");
         }
-
+  
         const data = await response.json();
         console.log("✅ ユーザーデータ:", data);
-        setUser(data.user);
+  
+        // ✅ `data.user.id` を使って `user_id` を取得
+        if (data.user && data.user.id) {
+          setUser({ id: data.user.id, email: data.user.email, name: data.user.name });
+        } else {
+          throw new Error("ユーザーデータのフォーマットが不正");
+        }
       } catch (error) {
         console.error("❌ ユーザー情報の取得に失敗:", error);
         setUser(null);
@@ -47,25 +53,26 @@ const FavoritePage: React.FC = () => {
         setLoading(false);
       }
     };
-
+  
     fetchUser();
   }, []);
+  
 
   // **ユーザーが取得できたら、お気に入りを取得**
   useEffect(() => {
-    if (user) {
+    if (user?.id) { // ✅ `user.id` が取得できたらリクエスト実行
       const fetchFavorites = async () => {
         try {
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites`, {
+          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${user.id}`, {
             method: "GET",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
           });
-
+  
           if (!response.ok) {
             throw new Error("エラーが返されました");
           }
-
+  
           const data = await response.json();
           console.log("✅ お気に入りデータ:", data);
           setFavorites(data);
@@ -73,10 +80,11 @@ const FavoritePage: React.FC = () => {
           console.error("❌ お気に入りデータの取得エラー:", error);
         }
       };
-
+  
       fetchFavorites();
     }
-  }, [user]);
+  }, [user]); // ✅ `user.id` の取得後にリクエストを送る
+  
 
   // **口コミデータを取得**
   useEffect(() => {
