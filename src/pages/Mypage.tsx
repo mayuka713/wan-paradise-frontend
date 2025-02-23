@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import "../pages/mypage.css";
+import "../pages/Mypage.css";
 
 const MyPage: React.FC = () => {
   const [userName, setUserName] = useState<string>("");
