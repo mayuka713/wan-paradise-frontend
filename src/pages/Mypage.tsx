@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import "./Mypage.css"; 
+import "./Mypage.css";
 
 const MyPage: React.FC = () => {
   const [userName, setUserName] = useState<string>("");
@@ -11,7 +11,7 @@ const MyPage: React.FC = () => {
   const [formUserName, setFormUserName] = useState(userName);
   const [formEmail, setFormEmail] = useState(email);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const  navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -24,7 +24,7 @@ const MyPage: React.FC = () => {
       }
       setUserName("");
       setEmail("");
-      
+
       console.log("ログアウト成功");
       navigate("/"); // ログインページに遷移
     } catch (error) {
@@ -43,20 +43,28 @@ const MyPage: React.FC = () => {
           throw new Error("ユーザー情報の取得に失敗しました");
         }
         const data = await response.json();
-        setUserName(data.name);
-        setEmail(data.email);
+        console.log("ユーザーデータ取得:", data);
+
+        if (data.user) {
+          setUserName(data.name || "");
+          setEmail(data.email || "");
+          setFormUserName(data.user.name || "");
+          setFormEmail(data.user.email || "");
+        } else {
+          throw new Error("ユーザーデータが空です");
+        }
       } catch (error) {
         console.error("エラー:", error);
       }
     };
-    
+
     fetchUser();
   }, []);
-  
+
 
   const handleSave = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profile`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -67,8 +75,10 @@ const MyPage: React.FC = () => {
       }
       const data = await response.json();
       console.log("プロフィール更新成功:", data);
-      setUserName(formUserName);
-      setEmail(formEmail);
+
+      //サーバーから最新のデータを反映
+      setUserName(data.user.name || formUserName);
+      setEmail(data.user.email || formEmail);
       setPassword("");
       setIsModalOpen(true);
     } catch (error) {
@@ -86,9 +96,9 @@ const MyPage: React.FC = () => {
           <p>メールアドレス:{email}</p>
         </div>
         <Link to="/favorites">
-        <div className="favorite-mypage-container">
-          <p className="favorite-mypage">お気に入りを見る</p>
-        </div>
+          <div className="favorite-mypage-container">
+            <p className="favorite-mypage">お気に入りを見る</p>
+          </div>
         </Link>
         <p className="update-info-title">ユーザー名とパスワードを変更する</p>
         <form className="profile-update-form" onSubmit={(e) => {
@@ -100,8 +110,9 @@ const MyPage: React.FC = () => {
             <input
               type="text"
               placeholder="新しいユーザー名を入力"
+              value={formUserName}
               onChange={(e) => setFormUserName(e.target.value)}
-              className="text-input" 
+              className="text-input"
             />
           </label>
           <label>
@@ -109,8 +120,9 @@ const MyPage: React.FC = () => {
             <input
               type="email"
               placeholder="メールアドレスを入力"
+              value={formEmail}
               onChange={(e) => setFormEmail(e.target.value)}
-              className="email-input" 
+              className="email-input"
             />
           </label>
 
@@ -125,7 +137,7 @@ const MyPage: React.FC = () => {
           <button type="submit">保存</button>
         </form>
         <div className="logout-container">
-        <button type="button" onClick={handleLogout} className="logout-button">ログアウト</button>
+          <button type="button" onClick={handleLogout} className="logout-button">ログアウト</button>
         </div>
         {isModalOpen && (
           <div className="modal">
