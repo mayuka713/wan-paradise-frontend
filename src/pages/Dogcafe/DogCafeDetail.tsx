@@ -41,7 +41,7 @@ const DogCafeDetail: React.FC = () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/me`, {
           method: "GET",
-          credentials: "include", // ✅ クッキーを送信
+          credentials: "include", // クッキーを送信
           headers: { "Content-Type": "application/json" },
         });
   
@@ -50,17 +50,17 @@ const DogCafeDetail: React.FC = () => {
         }
   
         const data = await response.json();
-        console.log("✅ ユーザーデータ:", data); // 取得したデータを表示
+        console.log("ユーザーデータ:", data); // 取得したデータを表示
   
         // `data.user.id` から `user_id` をセット
         if (data.user && data.user.id) {
-          console.log("✅ `user_id` を取得:", data.user.id);
+          console.log("user_idを取得:", data.user.id);
           setUserId(data.user.id);
         } else {
           throw new Error("ユーザーデータのフォーマットが不正");
         }
       } catch (error) {
-        console.error("❌ `user_id` の取得に失敗:", error);
+        console.error("user_idの取得に失敗:", error);
         setUserId(null);
       }
     };
@@ -114,15 +114,15 @@ const DogCafeDetail: React.FC = () => {
 
   //----------------------
   const handleFavoriteClick = async () => {
-    console.log("✅ お気に入りボタンがクリックされました");
+    console.log("お気に入りボタンがクリックされました");
   
     if (!store || userId === null) {
-      console.error("❌ store または userId が未定義:", { store, userId });
+      console.error("store または userId が未定義:", { store, userId });
       return;
     }
 
-    console.log("✅ 現在の `store_id`:", store?.store_id);
-    console.log("✅ 現在の `user_id`:", userId);
+    console.log("現在の `store_id`:", store?.store_id);
+    console.log("現在の `user_id`:", userId);
 
   
     const url = `${process.env.REACT_APP_BASE_URL}/favorites`;
@@ -132,25 +132,25 @@ const DogCafeDetail: React.FC = () => {
       store_id: store.store_id,
     });
   
-    console.log("📡 送信リクエスト:", { url, method, body });
+    console.log("送信リクエスト:", { url, method, body });
   
     try {
       const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // ✅ クッキーを送信するために追加
+        credentials: "include", // クッキーを送信するために追加
         body,
       });
   
-      console.log("📡 レスポンスステータス:", response.status);
-      console.log("📡 レスポンスボディ:", await response.text()); // エラーメッセージを取得
+      console.log("レスポンスステータス:", response.status);
+      console.log("レスポンスボディ:", await response.text()); // エラーメッセージを取得
   
       if (!response.ok) throw new Error("お気に入りの更新に失敗しました");
   
       setIsFavorite(!isFavorite);
-      console.log("✅ お気に入り状態が更新されました:", !isFavorite);
+      console.log("お気に入り状態が更新されました:", !isFavorite);
     } catch (err) {
-      console.error("❌ お気に入りの更新エラー:", err);
+      console.error("お気に入りの更新エラー:", err);
     }
   };
   

@@ -46,12 +46,40 @@ const DogRunDetail: React.FC = () => {
   const [userId, setUserId] = useState<number | null>(null);
   const MAP_API_KEY = process.env.REACT_APP_MAP_API_KEY;
 
+
   useEffect(() => {
-    const userIdFromCookie = getUserIdFromCookie();
-    console.log("取得した user_id:", userIdFromCookie);
-      setUserId(userIdFromCookie);
-  }, []);
+    const fetchUserId = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/me`, {
+          method: "GET",
+          credentials: "include", // クッキーを送信
+          headers: { "Content-Type": "application/json" },
+        });
   
+        if (!response.ok) {
+          throw new Error("未ログイン");
+        }
+  
+        const data = await response.json();
+        console.log("ユーザーデータ:", data); // 取得したデータを表示
+  
+        // `data.user.id` から `user_id` をセット
+        if (data.user && data.user.id) {
+          console.log("user_idを取得:", data.user.id);
+          setUserId(data.user.id);
+        } else {
+          throw new Error("ユーザーデータのフォーマットが不正");
+        }
+      } catch (error) {
+        console.error("user_idの取得に失敗:", error);
+        setUserId(null);
+      }
+    };
+  
+    fetchUserId();
+  }, []);
+
+
   useEffect(() => {
     const fetchStoreAndReviews = async () => {
       try {
