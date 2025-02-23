@@ -8,7 +8,7 @@ interface Favorite {
   store_id: number;
   store_name: string;
   store_address: string;
-  store_img: string;
+  store_img: string | string[] | undefined;
   store_type: string;
 }
 
@@ -169,7 +169,11 @@ const FavoritePage: React.FC = () => {
                       <Link key={favorite.store_id} to={detailPage} className="favorite-link">
                         <li className="favorite-item">
                           <img
-                            src={Array.isArray(favorite.store_img) || "https://placehold.jp/150x150.png"}
+                            src={typeof favorite.store_img === "string"
+                              ? favorite.store_img 
+                              : Array.isArray(favorite.store_img) &&  favorite.store_img.length > 0
+                              ? favorite.store_img[0]
+                              : "https://placehold.jp/150x150.png"}
                             alt={favorite.store_name}
                             className="favorite-item-img"
                             onError={(e) => {
