@@ -38,16 +38,16 @@ const FavoritePage: React.FC = () => {
         }
   
         const data = await response.json();
-        console.log("✅ ユーザーデータ:", data);
+        console.log("ユーザーデータ:", data);
   
-        // ✅ `data.user.id` を使って `user_id` を取得
+        //`data.user.id` を使って `user_id` を取得
         if (data.user && data.user.id) {
           setUser({ id: data.user.id, email: data.user.email, name: data.user.name });
         } else {
           throw new Error("ユーザーデータのフォーマットが不正");
         }
       } catch (error) {
-        console.error("❌ ユーザー情報の取得に失敗:", error);
+        console.error("ユーザー情報の取得に失敗:", error);
         setUser(null);
       } finally {
         setLoading(false);
@@ -60,7 +60,7 @@ const FavoritePage: React.FC = () => {
 
   // **ユーザーが取得できたら、お気に入りを取得**
   useEffect(() => {
-    if (user?.id) { // ✅ `user.id` が取得できたらリクエスト実行
+    if (user?.id) { // `user.id` が取得できたらリクエスト実行
       const fetchFavorites = async () => {
         try {
           const response = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${user.id}`, {
@@ -74,16 +74,16 @@ const FavoritePage: React.FC = () => {
           }
   
           const data = await response.json();
-          console.log("✅ お気に入りデータ:", data);
+          console.log("お気に入りデータ:", data);
           setFavorites(data);
         } catch (error) {
-          console.error("❌ お気に入りデータの取得エラー:", error);
+          console.error("お気に入りデータの取得エラー:", error);
         }
       };
   
       fetchFavorites();
     }
-  }, [user]); // ✅ `user.id` の取得後にリクエストを送る
+  }, [user]); // `user.id` の取得後にリクエストを送る
   
 
   // **口コミデータを取得**
@@ -100,10 +100,10 @@ const FavoritePage: React.FC = () => {
         }
 
         const data = await response.json();
-        console.log("✅ 口コミデータ:", data);
+        console.log("口コミデータ:", data);
         setReviews(data);
       } catch (error) {
-        console.error("❌ 口コミデータの取得エラー:", error);
+        console.error("口コミデータの取得エラー:", error);
       }
     };
 
@@ -173,6 +173,7 @@ const FavoritePage: React.FC = () => {
                             alt={favorite.store_name}
                             className="favorite-item-img"
                             onError={(e) => {
+                              console.log("🖼 画像URL:", favorite.store_img);
                               e.currentTarget.src = "https://placehold.jp/150x150.png";
                             }}
                           />
