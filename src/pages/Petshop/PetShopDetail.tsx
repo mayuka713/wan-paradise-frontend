@@ -25,20 +25,6 @@ interface Review {
   comment: string;
 }
 
-//ブラウザのクッキーに保存されているuserIdという値を取り出す
-const getUserIdFromCookie = (): number | null => {
-  const cookies = document.cookie.split("; ");
-  for (let cookie of cookies) {
-    const [name, value] = cookie.split("=");
-    if (name === "user_id") {
-      const parsedValue = parseInt(decodeURIComponent(value), 10);
-      return isNaN(parsedValue) ? null : parsedValue;
-    }
-  }
-  return null;
-};
-
-
 const PetShopDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [store, setStore] = useState<Store | null>(null);
@@ -48,10 +34,30 @@ const PetShopDetail: React.FC = () => {
   const MAP_API_KEY = process.env.REACT_APP_MAP_API_KEY;
 
   useEffect(() => {
-    const userIdFromCookie = getUserIdFromCookie();
-    if (userIdFromCookie !== null) {
-      setUserId(userIdFromCookie);
-    }
+    const fetchUserId = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/me`, {
+          method: "GET",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+          throw new Error("未ログイン");
+        }
+        const data = await response.json();
+
+        if (data.user && data.user.id) {
+          setUserId(data.user.id);
+        } else {
+          throw new Error("ユーザーデータのフォーマットが不正");
+        }
+
+      } catch (error) {
+        setUserId(null);
+      }
+    };
+    fetchUserId();
   }, []);
 
   useEffect(() => {
@@ -145,21 +151,21 @@ const PetShopDetail: React.FC = () => {
       <div className="detail-container">
         <h1 className="detail-title">{store.store_name}</h1>
         <div className="container">
-        {store.store_img.length > 0 ? (
-          <ImageSlider images={store.store_img} />
-        ) : (
-          <p>画像がありません</p>
-        )}
+          {store.store_img.length > 0 ? (
+            <ImageSlider images={store.store_img} />
+          ) : (
+            <p>画像がありません</p>
+          )}
 
-        {/*口コミ一覧ページへのリンクを追加*/}
-        {store.reviews && store.reviews.length > 0 && (
-          <Link
-            to={`/petshop/reviews/${store.store_id}`}
-            className="review-button-detail"
-          >
-            口コミを見る
-          </Link>
-        )}
+          {/*口コミ一覧ページへのリンクを追加*/}
+          {store.reviews && store.reviews.length > 0 && (
+            <Link
+              to={`/petshop/reviews/${store.store_id}`}
+              className="review-button-detail"
+            >
+              口コミを見る
+            </Link>
+          )}
         </div>
         {/* 平均評価を星で表示 */}
         <div style={{ margin: "20px 0" }}>

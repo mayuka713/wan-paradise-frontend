@@ -25,9 +25,6 @@ interface Review {
   comment: string;
 }
 
-
-
-
 const DogCafeDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [store, setStore] = useState<Store | null>(null);

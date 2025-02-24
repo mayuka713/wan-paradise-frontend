@@ -25,18 +25,6 @@ interface Review {
   comment: string;
 }
 
-const getUserIdFromCookie = (): number | null => {
-  const cookies = document.cookie.split("; "); // クッキーを分割
-  for (let cookie of cookies) {
-    const [name, value] = cookie.split("="); // クッキー名と値を分割
-    if (name === "user_id") {
-      const parsedValue = parseInt(decodeURIComponent(value), 10); // URIデコードしてから数値に変換
-      return isNaN(parsedValue) ? null : parsedValue; // NaNの場合はnullを返す
-    }
-  }
-  return null; // 該当するクッキーが存在しない場合
-};
-
 
 const DogRunDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
