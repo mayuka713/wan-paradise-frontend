@@ -7,11 +7,12 @@ body{
   background-color: #ffffff;
 }
 
-.store-list {
+.store-list-dogrun {
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
+  color: #1DB954;
 }
 
 .search-tags,

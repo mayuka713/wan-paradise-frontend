@@ -5,6 +5,7 @@
   background-color: #f9f9f9;
 }
 
+
 .content {
   text-align: center;
   padding: 20px;
@@ -12,11 +13,12 @@
 }
 
 
-.store-list {
+.store-list-petshop {
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
+  color:#ffb83d;
 }
 
 
@@ -70,6 +72,9 @@
   padding: 15px;
   text-decoration: none;
   color: #333;
+  border-radius: 10px; 
+  overflow: hidden; 
+  border: 1px solid #ddd; 
 }
 
 .store-item:hover {

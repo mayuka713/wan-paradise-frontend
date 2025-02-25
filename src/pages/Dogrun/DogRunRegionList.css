@@ -30,7 +30,6 @@ body{
 .region-content {
   font-size: 24px;
   text-align: center;
-  margin-bottom: 20px;
   font-weight: bold;
 }
 
@@ -69,6 +68,9 @@ body{
   
   .region-search {
     font-size: 14px;
+    margin-top: 50px;
+    font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+
   }
 
   .prefecture-list {

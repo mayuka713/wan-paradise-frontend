@@ -12,6 +12,16 @@
 }
 
 
+.store-list-petshop {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color:#d0d2d3;
+}
+
+
+
 .searchHospital {
   background-color: rgb(126, 178, 182);
   color: white;

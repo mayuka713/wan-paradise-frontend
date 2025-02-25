@@ -7,14 +7,12 @@ body{
   background-color: #f9f9f9;
 }
 
-.store-list {
+.store-list-dogcafe {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
-}
-.dogcafe-title {
-  color: #cba35c;
+  color: #CBA35C;
 }
 
 .type3-tags {
@@ -41,10 +39,6 @@ body{
 }
 
 @media (max-width: 480px) {
-  .store-item {
-    width: 90%;
-    margin: 10px auto;
-  }
 
   .star-container {
     margin-top: 80px;

@@ -120,7 +120,7 @@ const DogRunStoreList: React.FC = () => {
           <h2>{selectedPrefecture}</h2>
         ) : (
           <>
-            <h2 className="store-list">{selectedPrefecture}のドッグラン</h2>
+            <h2 className="store-list-dogrun">{selectedPrefecture}のドッグラン</h2>
             <h3 className="search-tags">行きたい条件のドッグランを探す</h3>
             <div className="type1-tags">
               {/* type1Tagを表示 */}

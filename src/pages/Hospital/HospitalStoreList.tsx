@@ -109,7 +109,7 @@ const HospitalStoreList: React.FC = () => {
           <h2>{selectedPrefecture}</h2>
         ) : (
           <>
-            <h2 className="title">{selectedPrefecture}の動物病院</h2>
+            <h2 className="store-list-hospital">{selectedPrefecture}の動物病院</h2>
             <p className="search-tags">動物病院の条件を絞り込む</p>
             <div className="type5-tags">
               {/* type1Tagを表示 */}

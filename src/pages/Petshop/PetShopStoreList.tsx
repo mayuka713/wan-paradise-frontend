@@ -112,7 +112,7 @@ const PetShopStoreList: React.FC = () => {
           <h2>{selectedPrefecture}</h2>
         ) : (
           <>
-            <h2 className="title">{selectedPrefecture}のペットショップ</h2>
+            <h2 className="store-list-petshop">{selectedPrefecture}のペットショップ</h2>
             <p className="search-tags">行きたいペットショップの条件を絞り込む</p>
             {/* タグボタンを表示 */}
             <div className="petshop-tags">
