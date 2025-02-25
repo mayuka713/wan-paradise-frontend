@@ -14,6 +14,7 @@ const Button: React.FC = () => {
                 fill="rgba(28,28,30,1)"
               />
             </div>
+          <div className="main-scroll-text">Scroll↓</div>
         </a>
       </div>
   );

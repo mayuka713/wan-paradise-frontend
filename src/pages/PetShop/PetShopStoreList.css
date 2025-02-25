@@ -148,8 +148,8 @@
 @media (max-width: 480px) {
 
   .store-item {
-    width: 90%;
-    margin: 10px auto;
+    width: 100%;
+    margin: 10px 0 20px -10px;
   }
 
   .star-container {
