@@ -40,16 +40,17 @@ body{
 
 @media (max-width: 480px) {
 
+
+
   .star-container {
     margin-top: 80px;
   }
-  .store-name-dogrun {
-    font-size: 16px;
-    margin-top: 80px;
+  .store-list-title-dogcafe {
+    font-size: 26px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 60px;
+    color: #CBA35C;
   }
-
 
   .search-for-tags h3 {
     font-size: 10px;

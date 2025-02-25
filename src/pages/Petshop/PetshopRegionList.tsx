@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./PetshopRegionList.css";
+import "./PetShopRegionList.css";
 import Header from "../Header";
 import Footer from "../Footer";
 
@@ -36,7 +36,7 @@ const PetshopRegionList: React.FC = () => {
 
 
   const handleClick = (id: number) => {
-    navigate(`/petshop/${id}`);
+    navigate(`/PetShop/${id}`);
   };
 
   // 地方ごとに都道府県を分類

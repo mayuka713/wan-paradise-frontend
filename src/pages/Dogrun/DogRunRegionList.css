@@ -66,6 +66,11 @@ body{
     z-index: 1000;
   }
   
+  .region-list-title-dogrun {
+    margin-top: 80px;
+    color: #1DB954;
+  }
+  
   .region-search {
     font-size: 14px;
     margin-top: 50px;

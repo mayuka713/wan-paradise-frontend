@@ -12,7 +12,7 @@
 }
 
 
-.store-list-petshop {
+.store-list-hospital {
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 20px;
@@ -65,6 +65,12 @@
 }
 
 @media (max-width: 480px) {
+
+  .store-list-hospital{
+    margin-top: 80px;
+    color: #d0d2d3;
+
+  }
   .type5-tags {
     gap: 8px;
   }

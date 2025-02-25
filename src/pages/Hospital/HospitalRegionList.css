@@ -58,3 +58,28 @@ body{
   background-color: #cdcdcd;
 }
 
+@media (max-width: 480px) {
+  
+
+  .region-list-title-hospital {
+    margin-top: 80px;
+    color: #d0d2d3;
+  }
+    .region-search {
+      font-size: 14px;
+      margin-top: 50px;
+      font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+  
+    }
+  
+    .prefecture-list {
+      gap: 10px;
+    }
+  
+    .prefecture-button-list {
+      padding: 8px 12px;
+      font-size: 12px;
+      margin: 10px;
+    }
+  
+  }

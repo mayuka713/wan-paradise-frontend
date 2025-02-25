@@ -48,3 +48,51 @@ body{
   color: hsl(53, 48%, 37%);
   background-color: #f9f9f9;
 }
+
+
+  .region-search {
+    font-size: 24px;
+  }
+
+  .prefecture-list {
+    gap: 10px;
+  }
+
+  .prefecture-button-list {
+    padding: 8px 12px;
+    font-size: 15px;
+    margin: 10px;
+  }
+
+  .region-list-container {
+    margin: 60px auto;
+    max-width: 1200px;
+    padding: 20px;
+  
+  }
+
+  @media (max-width: 480px) {
+  
+
+    .region-list-title-dogcafe {
+      margin-top: 80px;
+      color: #CBA35C;
+    }
+      .region-search {
+        font-size: 14px;
+        margin-top: 50px;
+        font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+    
+      }
+    
+      .prefecture-list {
+        gap: 10px;
+      }
+    
+      .prefecture-button-list {
+        padding: 8px 12px;
+        font-size: 12px;
+        margin: 10px;
+      }
+    
+    }

@@ -18,18 +18,21 @@ import DogRunDetail from "./pages/Dogrun/DogRunDetail";
 import DogRunReview from "./pages/Dogrun/DogRunReviewList";
 
 // ドッグカフェのページ
-import DogcafePage from "./pages/Dogcafe/DogCafePage";
-import DogCafeRegionList from "./pages/Dogcafe/DogCafeRegionList";
-import DogCafeStoreList from "./pages/Dogcafe/DogCafeStoreList";
-import DogCafeDetail from "./pages/Dogcafe/DogCafeDetail";
-import DogCafeReview from "./pages/Dogcafe/DogCafeReviewList";
+import DogCafePage from "./pages/DogCafe/DogCafePage";
+import DogCafeRegionList from "./pages/DogCafe/DogCafeRegionList";
+import DogCafeStoreList from "./pages/DogCafe/DogCafeStoreList";
+import DogCafeDetail from "./pages/DogCafe/DogCafeDetail";
+import DogCafeReview from "./pages/DogCafe/DogCafeReviewList";
+
+
 
 // ペットショップのページ
-import PetshopPage from "./pages/Petshop/PetShopPage";
-import PetShopRegionList from "./pages/Petshop/PetshopRegionList";
-import PetShopStoreList from "./pages/Petshop/PetShopStoreList";
-import PetShopDetail from "./pages/Petshop/PetShopDetail";
-import PetShopReview from "./pages/Petshop/PetShopReviewList";
+import PetShopPage from "./pages/PetShop/PetShopPage";
+import PetShopRegionList from "./pages/PetShop/PetShopRegionList";
+import PetShopStoreList from "./pages/PetShop/PetShopStoreList";
+import PetShopDetail from "./pages/PetShop/PetShopDetail";
+import PetShopReview from "./pages/PetShop/PetShopReviewList";
+
 
 // 病院のページ
 import HospitalPage from "./pages/Hospital/HospitalPage";
@@ -64,14 +67,14 @@ const Layout = () => {
         <Route path="/dogrun/reviews/:storeId" element={<DogRunReview />} />
 
         {/* ドッグカフェページ */}
-        <Route path="/dogcafe" element={<DogcafePage />} />
+        <Route path="/dogcafe" element={<DogCafePage />} />
         <Route path="/DogCafeRegionList" element={<DogCafeRegionList />} />
         <Route path="/dogcafe/:prefectureId" element={<DogCafeStoreList />} />
         <Route path="/dogcafe/detail/:id" element={<DogCafeDetail />} />
         <Route path="/dogcafe/reviews/:storeId" element={<DogCafeReview />} />
 
         {/* ペットショップページ */}
-        <Route path="/petshop" element={<PetshopPage />} />
+        <Route path="/petshop" element={<PetShopPage />} />
         <Route path="/petshop-regions-list" element={<PetShopRegionList />} />
         <Route path="/petshop/:prefectureId" element={<PetShopStoreList />} />
         <Route path="/petshop/detail/:id" element={<PetShopDetail />} />

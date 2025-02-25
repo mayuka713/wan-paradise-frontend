@@ -68,7 +68,7 @@ const TopPage: React.FC = () => {
       <Header />
 
       {/* メインタイトル */}
-      <p className={`main-title ${showTitle ? "show" : ""}`}>
+      <p className= "main-title-show">
         ドッグラン、ドッグカフェ、ペットショップや動物病院など
         <br />
         様々なわんこの情報をご紹介しております!
@@ -86,35 +86,23 @@ const TopPage: React.FC = () => {
           <div className="scroll-content">
             <Button />
             <Link to="/dogrun" className="fade-in">
-              <img src={dogrunNameTag} alt="ドッグランネームタグ" />
-              <img
-                src={DogrunImage}
-                alt="ドッグランのイラスト"
-                className="item"
-              />
+              <img src={dogrunNameTag} alt="ドッグランネームタグ" className="name-tag dogrun-name-tag" />
+              <img src={DogrunImage} alt="ドッグランのイラスト" className="item" />
             </Link>
             <Link to="/dogcafe" className="fade-in">
-              <img src={dogCafeNameTag} alt="ドッグカフェネームタグ" />
-              <img
-                src={dogcafeImage}
-                alt="ドッグカフェのイラスト"
-                className="item"
-              />
+              <img src={dogCafeNameTag} alt="ドッグカフェネームタグ" className="name-tag dogcafe-name-tag" />
+              <img src={dogcafeImage} alt="ドッグカフェのイラスト" className="item" />
             </Link>
             <Link to="/petshop" className="fade-in">
-              <img src={petshopNameTag} alt="ペットショップネームタグ" />
-              <img
-                src={petshopImage}
-                alt="ペットショップのイラスト"
-                className="item"
-              />
+              <img src={petshopNameTag} alt="ペットショップネームタグ" className="name-tag petshop-name-tag" />
+              <img src={petshopImage} alt="ペットショップのイラスト" className="item" />
             </Link>
             <Link to="/hospital" className="fade-in">
-              <img src={hospitalNameTag} alt="病院ネームタグ" />
-              <img
-                src={hospitalImage} alt="病院のイラスト" className="item" />
+              <img src={hospitalNameTag} alt="病院ネームタグ" className="name-tag hospital-name-tag" />
+              <img src={hospitalImage} alt="病院のイラスト" className="item" />
             </Link>
           </div>
+
         ) : (
           // PC用レイアウト
           <div className="scroll-container">

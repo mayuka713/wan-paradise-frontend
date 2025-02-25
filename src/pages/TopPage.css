@@ -6,12 +6,11 @@
   margin: 0 auto;
 }
 
-.main-title {
-  opacity: 0;
+.main-title-show {
   font-size: 1rem;
   text-align: center;
   transform: translateY(-20px);
-  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+  font-family: "Zen Kaku Gothic New","Noto Sans JP", serif, "sans-serif";
   font-weight: 600;
   margin: 100px;
 
@@ -81,11 +80,11 @@
 
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(-25%);
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-125%);
   }
 }
 
@@ -158,16 +157,12 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
-  .main__action.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   .scroll-content {
     display: flex;
     flex-direction: column;
     animation: none;
     align-items: center;
+    animation-delay: 2s;
   }
 
   .scroll-content:nth-child(2) {
@@ -175,17 +170,43 @@
   }
 
   .item {
-    max-width: 100%;
+    max-width: 200%;
     margin: 0 auto;
     z-index: 1;
     position: relative;
   }
-
-  .item-nametag {
-    margin-left: 50px;
+  .item-dogrunName {
+    margin-top: 10px;
+  }
+  
+  .hospital-item {
+    position: relative;
+    z-index: 1;
   }
 
-  .main-title {
+  .name-tag {
+    width: 150px; /* 全体の幅 */
+    display: block;
+    margin: 40px auto 10px; /* 画像の余白調整 */
+  }
+  
+  .dogrun-name-tag {
+    margin-top: 20px;
+  }
+  
+  .dogcafe-name-tag {
+    margin-top: 20px;
+    margin-bottom: -30px;
+  }
+  
+  .petshop-name-tag {
+    margin-top: 20px;
+  }
+  
+  .hospital-name-tag {
+    margin-top: 20px;
+  }
+  .main-title-show {
     font-size: 13px;
     text-align: center;
     font-weight: 700;
@@ -220,7 +241,7 @@
   }
 
   .fade-in:nth-child(4) {
-    transition-delay: 0.8s;
+    transition-delay: 0s;
     /* 病院 */
   }
 

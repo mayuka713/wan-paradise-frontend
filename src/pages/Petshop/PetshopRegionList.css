@@ -8,7 +8,7 @@ body{
   padding: 20px;
 
 }
-.region-list-title-petshop {
+.region-list-title-PetShop {
   color: #ffb83d;
 }
 
@@ -53,18 +53,20 @@ body{
     border-radius: 50px;
 }
 
+
+
 @media (max-width: 480px) {
+  
 
-  .hamburger-menu {
-    position: fixed;
-    top: 20px;
-    left: 0;
-    width: 100%; 
-    z-index: 1000; 
-  }
-
+.region-list-title-petshop {
+  margin-top: 80px;
+  color: #ffb83d;
+}
   .region-search {
-    font-size: 24px;
+    font-size: 14px;
+    margin-top: 50px;
+    font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+
   }
 
   .prefecture-list {
@@ -73,14 +75,8 @@ body{
 
   .prefecture-button-list {
     padding: 8px 12px;
-    font-size: 15px;
+    font-size: 12px;
     margin: 10px;
   }
 
-  .region-list-container {
-    margin: 60px auto;
-    max-width: 1200px;
-    padding: 20px;
-  
-  }
 }

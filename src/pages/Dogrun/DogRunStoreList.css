@@ -142,7 +142,8 @@ body{
 
 @media (max-width: 480px) {
   
-  .title {
+
+  .store-list-dogrun {
     font-size: 26px;
     text-align: center;
     margin-top: 60px;
@@ -164,6 +165,11 @@ body{
     margin: 5px;
   }
 
+  .type1-tags,
+  .type2-tags {
+   gap: 0;
+
+  }
   .store-list {
     grid-template-columns: 1fr;
     gap: 10px;
