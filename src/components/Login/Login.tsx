@@ -47,8 +47,6 @@ function Login(): JSX.Element {
               required
               aria-label="メールアドレス"
             />
-          </div>
-          <div className="form-group">
             <input
               type="password"
               id="password"

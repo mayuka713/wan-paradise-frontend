@@ -68,5 +68,8 @@ button[type="submit"]:hover {
     display: flex;
     margin: 14px;
   }
-
+.form-group {
+  text-align: center;
+  margin-left: -20px;
+}
 }
