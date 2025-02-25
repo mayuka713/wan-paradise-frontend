@@ -96,7 +96,7 @@ const MyPage: React.FC = () => {
         <h1 className="mypage-title">マイページ</h1>
         <div className="user-info-container">
           <p>ユーザー名：{formUserName}</p>
-          <p>メールアドレス:{formEmail}</p>
+          <p>メールアドレス : {formEmail}</p>
         </div>
         <Link to="/favorites">
           <div className="favorite-mypage-container">

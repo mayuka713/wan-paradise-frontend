@@ -90,6 +90,17 @@
   box-sizing: border-box;
 }
 
+.email-input {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
 /* フォームボタンのスタイル */
 .profile-update-form button {
   width: 100%;
@@ -216,7 +227,6 @@
   .profile-update-form button {
     max-width: 100%;
     font-size: 0.9rem;
-  }
-
+  } 
 
 }
