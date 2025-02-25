@@ -25,7 +25,6 @@ import DogCafeDetail from "./pages/DogCafe/DogCafeDetail";
 import DogCafeReview from "./pages/DogCafe/DogCafeReviewList";
 
 
-
 // ペットショップのページ
 import PetShopPage from "./pages/PetShop/PetShopPage";
 import PetShopRegionList from "./pages/PetShop/PetShopRegionList";
