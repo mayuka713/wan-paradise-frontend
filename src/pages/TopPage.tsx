@@ -19,6 +19,7 @@ const TopPage: React.FC = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
+  const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,7 +31,18 @@ const TopPage: React.FC = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   },
-  []);    
+  []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowTitle(true);
+    }, 800);
+    
+
+    setTimeout(() => {
+      setShowScroll(true);
+    }, 1600);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

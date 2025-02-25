@@ -2,6 +2,7 @@
   bottom: 0;
   width: 100%;
   text-align: center;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP" serif, "sans-serif";
 }
 
 @media (max-width: 480px) {
