@@ -64,7 +64,7 @@ const MyPage: React.FC = () => {
 
   const handleSave = async () => {
     const requestData = { name: formUserName, email: formEmail, password };
-    console.log("📡 送信データ:", requestData); // デバッグ用ログ
+    console.log("送信データ:", requestData); // デバッグ用ログ
   
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/update`, {
