@@ -146,7 +146,6 @@ const DogCafeStoreList: React.FC = () => {
               store.map((storeItem) => {
                 const reviews = storeItem.reviews ?? [];
                 const totalRating = reviews.reduce((sum, review) => sum + ( review.rating || 0),0);
-
                 const averageRating = reviews.length > 0 ? totalRating/reviews.length : 0; 
                 
                 return (

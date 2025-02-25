@@ -3,6 +3,7 @@
   margin: 0 auto; /* 中央配置 */
   padding: 20px;
   border-radius: 8px;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
 }
 .detail-title {
   text-align: center;

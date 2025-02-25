@@ -16,7 +16,7 @@ const Button: React.FC = () => {
               />
             </svg>
             </div>
-          <div className="main-scroll-text">Scroll</div>
+          <div className="main-scroll-text">Scroll↓</div>
         </a>
       </div>
   );

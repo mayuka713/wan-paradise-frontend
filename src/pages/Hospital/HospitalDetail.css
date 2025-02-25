@@ -1,9 +1,15 @@
+body{
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+}
+
+
 .detail-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
+
 }
 
 .detail-title {

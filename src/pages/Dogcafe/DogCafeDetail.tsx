@@ -147,7 +147,7 @@ const DogCafeDetail: React.FC = () => {
       setIsFavorite(!isFavorite);
       console.log("お気に入り状態が更新されました:", !isFavorite);
     } catch (err) {
-      console.error("❌ お気に入りの更新エラー:", err);
+      console.error("お気に入りの更新エラー:", err);
     }
   };
   

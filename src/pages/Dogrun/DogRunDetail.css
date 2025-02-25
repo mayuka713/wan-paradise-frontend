@@ -1,3 +1,7 @@
+body{
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+}
+
 .detail-container {
   max-width: 800px;
   /* 最大幅を指定 */
@@ -5,7 +9,6 @@
   /* 中央配置 */
   padding: 20px;
   border-radius: 8px;
-  font-family: "Noto Sans JP", serif;
 }
 
 .detail-title {

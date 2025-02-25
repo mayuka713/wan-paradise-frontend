@@ -41,14 +41,14 @@ const HospitalDetail: React.FC = () => {
           credentials: "include", // クッキーを送信
           headers: { "Content-Type": "application/json" },
         });
-  
+
         if (!response.ok) {
           throw new Error("未ログイン");
         }
-  
+
         const data = await response.json();
         console.log("ユーザーデータ:", data); // 取得したデータを表示
-  
+
         // `data.user.id` から `user_id` をセット
         if (data.user && data.user.id) {
           console.log("user_idを取得:", data.user.id);
@@ -61,12 +61,12 @@ const HospitalDetail: React.FC = () => {
         setUserId(null);
       }
     };
-  
+
     fetchUserId();
   }, []);
 
-//店舗の口コミ
-useEffect(() => {
+  //店舗の口コミ
+  useEffect(() => {
     const fetchStoreAndReviews = async () => {
       try {
         const storeResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/stores/detail/${id}`);
@@ -87,7 +87,7 @@ useEffect(() => {
       }
     };
     if (id) {
-    fetchStoreAndReviews();
+      fetchStoreAndReviews();
     }
   }, [id]);
 
@@ -97,49 +97,49 @@ useEffect(() => {
   //-------指定された店舗の情報とその店舗がユーザーのお気に入りに登録されているかどうかを取得する
 
   useEffect(() => {
-    const fetchFavorites= async () => {
+    const fetchFavorites = async () => {
       if (userId === null) return;
 
       try {
         const favoriteResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/favorites/${userId}`);
         if (favoriteResponse.ok) {
-          const favoriteData: {store_id: number}[] = await favoriteResponse.json();
+          const favoriteData: { store_id: number }[] = await favoriteResponse.json();
           setIsFavorite(favoriteData.some((fav) => fav.store_id === Number(id)));
         }
 
       } catch (err: any) {
-        console.error("お気に入りエラー",err);
+        console.error("お気に入りエラー", err);
       }
     };
     if (id && userId !== null) {
       fetchFavorites();
     }
-    
+
   }, [id, userId]);
 
   // お気に入りの追加・解除
- const handleFavoriteClick = async () => {
-  if (!store || userId === null) return;
+  const handleFavoriteClick = async () => {
+    if (!store || userId === null) return;
 
-  const url = `${process.env.REACT_APP_BASE_URL}/favorites`;
-  const method = isFavorite ? "DELETE" : "POST";
-  const body = JSON.stringify({
-    user_id: userId,
-    store_id: store.store_id,
-  });
-
-  try {
-    const response = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body,
+    const url = `${process.env.REACT_APP_BASE_URL}/favorites`;
+    const method = isFavorite ? "DELETE" : "POST";
+    const body = JSON.stringify({
+      user_id: userId,
+      store_id: store.store_id,
     });
-    if (!response.ok) throw new Error("お気に入りの更新に失敗しました");
-    setIsFavorite(!isFavorite);
-  } catch (err) {
-    setError("お気に入りの更新に失敗しました");
-  }
-};
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body,
+      });
+      if (!response.ok) throw new Error("お気に入りの更新に失敗しました");
+      setIsFavorite(!isFavorite);
+    } catch (err) {
+      setError("お気に入りの更新に失敗しました");
+    }
+  };
 
 
   if (error) return <div className="container">{error}</div>;
@@ -160,20 +160,20 @@ useEffect(() => {
       <div className="detail-container">
         <h1 className="detail-title">{store.store_name}</h1>
         <div className="container">
-        {store.store_img.length > 0 ? (
-          <ImageSlider images={store.store_img} />
-        ) : (
-          <p>画像がありません</p>
-        )}
-        {store.reviews && store.reviews.length > 0 && (
-          <Link
-            to={`/hospital/reviews/${store.store_id}`}
-            className="review-button-detail"
-          >
-            口コミを見る
-          </Link>
-        )}
-      </div>
+          {store.store_img.length > 0 ? (
+            <ImageSlider images={store.store_img} />
+          ) : (
+            <p>画像がありません</p>
+          )}
+          {store.reviews && store.reviews.length > 0 && (
+            <Link
+              to={`/hospital/reviews/${store.store_id}`}
+              className="review-button-detail"
+            >
+              口コミを見る
+            </Link>
+          )}
+        </div>
         {/* 平均評価 */}
         <div style={{ margin: "20px 0" }}>
           {store.reviews && store.reviews.length > 0 ? (
@@ -182,9 +182,8 @@ useEffect(() => {
                 {[1, 2, 3, 4, 5].map((value) => (
                   <span
                     key={value}
-                    className={`star ${
-                      value <= Math.round(averageRating) ? "selected" : ""
-                    }`}
+                    className={`star ${value <= Math.round(averageRating) ? "selected" : ""
+                      }`}
                   >
                     ★
                   </span>

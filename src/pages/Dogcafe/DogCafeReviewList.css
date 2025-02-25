@@ -1,3 +1,7 @@
+body{
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
+}
+
 .content {
   text-align: center;
   padding: 20px;

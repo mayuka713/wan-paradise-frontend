@@ -1,6 +1,6 @@
 .mypage-container {
   margin: 0 auto;
-  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", serif, "sans-serif";
 }
 
 .mypage-title {
