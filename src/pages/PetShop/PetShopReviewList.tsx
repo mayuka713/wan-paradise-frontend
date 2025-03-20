@@ -8,13 +8,10 @@ import Modal from "../../components/Modal"
 
 type Review = {
   id: number;
-  name: string;
   store_id: number;
   rating: number;
   comment: string;
-  date: string;
   created_at: string;
-  updated_at: string;
 };
 
 const PetShopReviewList: React.FC = () => {
@@ -35,14 +32,11 @@ const PetShopReviewList: React.FC = () => {
         if (!response.ok) throw new Error("口コミの取得に失敗しました");
 
         const data: Review[] = await response.json();
-
         setReviews(data);
 
         if (data.length > 0) {
           const totalRating = data.reduce(
-            (sum: number, review: Review) => sum + review.rating,
-            0
-          );
+            (sum: number, review: Review) => sum + review.rating,0);
           const avgRating = totalRating / data.length;
           setAverageRating(Math.min(avgRating, 5));
         } else {
@@ -72,35 +66,39 @@ const PetShopReviewList: React.FC = () => {
 
 
   //口コミを取得
-    const handleReviewSubmit = async (rating: number, comment: string) => {
-        try {
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/petshop/reviews`, {
-            method: "POST",
-            headers: { "Content-type": "application/json"},
-            body: JSON.stringify({
-              store_id: storeId,
-              rating,
-              comment,
-            }),
-          });
-        if (!response.ok) throw new Error("コメント投稿に失敗しました");
+     // 口コミを投稿する関数
+  const handleReviewSubmit = async (rating: number, comment: string) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/reviews`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          store_id: storeId,
+          rating,
+          comment,
+        }),
+      });
 
-        const newReview: Review = await response.json();
+      if (!response.ok) {
+        throw new Error("コメント投稿に失敗しました");
+      }
 
-        setReviews((preReviews) => {
-          const updatedReviews = [newReview, ...preReviews];
-          const totalRating = updatedReviews.reduce(
-            (sum: number, rev: Review) => sum + rev.rating,
-            0
-          );
-          const newAverageRating = totalRating / updatedReviews.length;
-          setAverageRating(Math.min(newAverageRating,5));
-          return updatedReviews;
-        });  
-      } catch (err) {
+      const newReview: Review = await response.json();
+
+      setReviews((prevReviews) => {
+        const updatedReviews = [newReview, ...prevReviews]; // 新しい口コミを追加
+        const totalRating = updatedReviews.reduce(
+          (sum: number, rev: Review) => sum + rev.rating, 0
+        );
+        const newAverageRating = totalRating / updatedReviews.length;
+        setAverageRating(Math.min(newAverageRating, 5)); // 平均評価を更新
+        return updatedReviews; // 更新されたレビューリストを `setReviews` にセット
+      });
+    } catch (err) {
       setError("コメント投稿に失敗しました");
     }
   };
+
 
     return (
       <>

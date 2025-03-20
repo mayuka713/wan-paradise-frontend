@@ -5,7 +5,6 @@ import Header from "../Header";
 import Footer from "../Footer";
 
 
-
 interface Prefecture {
   id: number;
   name: string;
