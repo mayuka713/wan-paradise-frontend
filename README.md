@@ -44,15 +44,13 @@
 
 
 <img width="905" alt="2025年4月20日 スクリーンショット" src="https://github.com/user-attachments/assets/627d5860-b6cc-445c-9b53-884d5d1ac826" />
+・タグ検索機能を実装し、“自然芝生”や“小型犬専用あり”などの条件に基づいて、ユーザーの目的に合ったドッグランを表示できるようにしました。
 
-タグ検索機能を実装し、“自然芝生”や“小型犬専用あり”などの条件に基づいて、ユーザーの目的に合ったドッグランを表示できるようにしました。
-
-<img width="858" alt="スクリーンショット 2025-04-20 午前10 07 54" src="https://github.com/user-attachments/assets/d229e561-2cf8-4000-8b9b-08214e5f5f94" />
-レビュー投稿機能
+<img width="700" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/a3091ebe-22fe-41eb-8aa9-52cedd8da910" />
+・レビュー投稿機能
 
 ![Favorites from wan mayuka site](https://github.com/user-attachments/assets/6daae0f1-572e-4280-b301-ad369789add5)
+・お気に入り登録機能
 
-お気に入り登録機能
-
-<img width="730" alt="スクリーンショット 2025-04-20 午前10 12 09" src="https://github.com/user-attachments/assets/dc0f9252-fc42-4e0a-81b0-36ee5c7024c9" />
-マイページの登録
+<img width="441" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/47a8ef62-bbe9-4231-8f84-4bb7d303296a" />
+・マイページの登録
