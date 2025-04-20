@@ -18,7 +18,7 @@
 | 分野 | 技術 |
 |------|------|
 | フロントエンド | React / TypeScript |
-| バックエンド | Node.js / Express |
+| バックエンド |TypeScript/  Node.js / Express |
 | データベース | PostgreSQL |
 
 ---
@@ -34,9 +34,9 @@
 
 ## このアプリを作成した目的
 
-私は犬を飼っており、ドッグランやドッグカフェ、ペットショップ、動物病院を探す際に、多くのサイトを行き来したり、Googleで1件ずつ口コミを調べるのが大変だと感じていました。
+私は犬を飼っているのですが、ドッグラン、ドッグカフェ、ペットショップ、動物病院を探す際に、多くのサイトを行き来したり、Googleで1件ずつ口コミを調べるのが大変だと感じていました。
 そこで、犬に関する施設情報を1つのサイトに集約し、使いやすい検索機能を提供できれば便利だと考え、このWebアプリの開発に至りました。
-ペットを飼っている人が、必要な情報を手間なく見つけられるような、ユーザー目線のサービスを目指しています。
+ペットを飼っている方が、必要な情報を手間なく見つけられるような、ユーザー目線のサービスを目指しています。
 
 ---
 
@@ -45,9 +45,12 @@
 
 <img width="905" alt="2025年4月20日 スクリーンショット" src="https://github.com/user-attachments/assets/627d5860-b6cc-445c-9b53-884d5d1ac826" />
 ・タグ検索機能を実装し、“自然芝生”や“小型犬専用あり”などの条件に基づいて、ユーザーの目的に合ったドッグランを表示できるようにしました。
+　UI: React/TypeScriptでタグボタンを実装。選択状態をuseStateで管理し、変更時にfetchでバックエンドへ非同期リクエスト(tagIdsクエリ)を送信。
 
 <img width="700" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/a3091ebe-22fe-41eb-8aa9-52cedd8da910" />
-・レビュー投稿機能
+・レビュー投稿機能(React + Express + PostgreSQL)
+UI: 店舗詳細ページに評価+コメント入力用モーダルを実装（React/TypeScript)。送信時にfetchで非同期POST→入力直後に平均評価とレビュー一覧を即時再描画。
+API: Node.js(Express)で/review POST/GETエンドポイントを作成。POSTでは必須項目をバリエーションに、INSERT後にstoresとJOINしてsote_name付きで返却。
 
 ![Favorites from wan mayuka site](https://github.com/user-attachments/assets/6daae0f1-572e-4280-b301-ad369789add5)
 ・お気に入り登録機能
