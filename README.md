@@ -41,9 +41,9 @@
 ---
 
 ## スクリーンショット
+![Uploading 2025年4月20日 スクリーンショット.png…]()
 
 
-<img width="1464" alt="スクリーンショット 2025-04-20 午前10 05 04" src="https://github.com/user-attachments/assets/5a3e6212-3029-4dae-8d0d-5c07a2659b50" />
 タグ検索機能を実装し、“自然芝生”や“小型犬専用あり”などの条件に基づいて、ユーザーの目的に合ったドッグランを表示できるようにしました。
 
 <img width="858" alt="スクリーンショット 2025-04-20 午前10 07 54" src="https://github.com/user-attachments/assets/d229e561-2cf8-4000-8b9b-08214e5f5f94" />
