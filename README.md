@@ -49,7 +49,8 @@
 <img width="858" alt="スクリーンショット 2025-04-20 午前10 07 54" src="https://github.com/user-attachments/assets/d229e561-2cf8-4000-8b9b-08214e5f5f94" />
 レビュー投稿機能
 
-![Favorites from wan mayuka site](https://github.com/user-attachments/assets/013e2c5d-28e9-4944-ac44-7611610a05d6)
+![Favorites from wan mayuka site](https://github.com/user-attachments/assets/6daae0f1-572e-4280-b301-ad369789add5)
+
 お気に入り登録機能
 
 <img width="730" alt="スクリーンショット 2025-04-20 午前10 12 09" src="https://github.com/user-attachments/assets/dc0f9252-fc42-4e0a-81b0-36ee5c7024c9" />
