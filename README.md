@@ -41,10 +41,16 @@
 ---
 
 ## スクリーンショット
-![image](https://github.com/user-attachments/assets/11d135c9-e8ea-4915-a7de-21f0e5e9af64)
-![image](https://github.com/user-attachments/assets/7b96f619-bb8d-4b9f-8df0-de8c09975119)
-![image](https://github.com/user-attachments/assets/162b24d9-4039-4f10-a309-fe0611aabc5b)
-![image](https://github.com/user-attachments/assets/2753c576-5ada-4e97-ac9f-868d0769a38d)
-![image](https://github.com/user-attachments/assets/c3822296-39be-4d29-9964-5afbe6956556)
-![image](https://github.com/user-attachments/assets/ccf220b1-f802-4559-af9d-ecaae58f6965)
-![image](https://github.com/user-attachments/assets/a4e0065b-d05c-489a-8cad-658e9bbe3753)
+
+
+<img width="1464" alt="スクリーンショット 2025-04-20 午前10 05 04" src="https://github.com/user-attachments/assets/5a3e6212-3029-4dae-8d0d-5c07a2659b50" />
+タグ検索機能を実装し、“自然芝生”や“小型犬専用あり”などの条件に基づいて、ユーザーの目的に合ったドッグランを表示できるようにしました。
+
+<img width="858" alt="スクリーンショット 2025-04-20 午前10 07 54" src="https://github.com/user-attachments/assets/d229e561-2cf8-4000-8b9b-08214e5f5f94" />
+レビュー投稿機能
+
+![Favorites from wan mayuka site](https://github.com/user-attachments/assets/013e2c5d-28e9-4944-ac44-7611610a05d6)
+お気に入り登録機能
+
+<img width="730" alt="スクリーンショット 2025-04-20 午前10 12 09" src="https://github.com/user-attachments/assets/dc0f9252-fc42-4e0a-81b0-36ee5c7024c9" />
+マイページの登録
