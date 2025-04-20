@@ -34,9 +34,10 @@
 
 ## このアプリを作成した目的
 
-私は犬を飼っているのですが、ドッグラン、ドッグカフェ、ペットショップ、動物病院を探す際に、多くのサイトを行き来したり、Googleで1件ずつ口コミを調べるのが大変だと感じていました。
-そこで、犬に関する施設情報を1つのサイトに集約し、使いやすい検索機能を提供できれば便利だと考え、このWebアプリの開発に至りました。
-ペットを飼っている方が、必要な情報を手間なく見つけられるような、ユーザー目線のサービスを目指しています。
+
+このアプリは「犬を飼っているユーザーが必要な情報を探すのに時間がかかる」という実体験から着想を得ました。  
+React / Express / PostgreSQL で構成されたフルスタックアプリで、タグ検索・レビュー投稿・お気に入り登録・マイページ機能など、ユーザー中心の設計を意識して作り込みました。  
+現在はシーディングで店舗データを登録していますが、今後は店舗オーナー自身が情報を登録・編集できる管理機能の導入を目指しています。
 
 ---
 
@@ -44,24 +45,43 @@
 
 
 <img width="905" alt="2025年4月20日 スクリーンショット" src="https://github.com/user-attachments/assets/627d5860-b6cc-445c-9b53-884d5d1ac826" />　
-非同期タグ検索機能（React + Express + PostgreSQL）
 
-UI：React／TypeScript でタグボタンを実装。選択状態を useState で管理し、変更時に fetch でバックエンドへ非同期リクエスト（tagIds クエリ）を送信。
+（タグによる絞り込み機能）
 
-API：Node.js（Express）で /stores/list/tag/:prefectureId エンドポイントを作成。都道府県 ID と複数タグ ID を受け取り、PostgreSQL の stores と store_tags を JOIN して対象店舗を返却。
+・タグデータはGET/tagsエンドポイントから取得し、tag_typeによって種類別（例：type1=特徴、type2=設備）に分類して表示
 
-結果表示：取得した JSON を即時レンダリングし、タグの付け外しに応じて店舗一覧をリアルタイム更新
+・タグをクリックすると、ReactのselectedTagIdsステートにIDを追加または削除（トグル処理）
+
+・取得した店舗情報（画像・住所・評価・営業時間など）をReactでリスト表示し、星評価の平均は review.rating の平均値として計算し視覚化
+
 
 <img width="700" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/a3091ebe-22fe-41eb-8aa9-52cedd8da910" />
-・レビュー投稿機能(React + Express + PostgreSQL)
-UI：店舗詳細ページに評価＋コメント入力用モーダルを実装（React／TypeScript）。送信時に fetch で非同期 POST → 入力直後に平均評価とレビュー一覧を即時再描画。
 
-API：Node.js（Express）で /reviews POST／GET エンドポイントを作成。POST では必須項目をバリデーションし、INSERT 後に stores と JOIN して store_name 付きで返却。
 
-SQL：PostgreSQL に reviews テーブルを作成し、createdAt・updatedAt を自動登録。平均評価は AVG(rating) OVER() で計算して一覧 API に同梱。
+（レビュー投稿機能）
+
+・特定の店舗ごとにレビューを取得・表示（GET/reviews/:store_id）
+
+・平均評価を計算して表示（フロント側で計算）
+
+・投稿時はモーダルを使用し、コメントと星評価を送信
 
 ![Favorites from wan mayuka site](https://github.com/user-attachments/assets/6daae0f1-572e-4280-b301-ad369789add5)
-・お気に入り登録機能
+
+（お気に入り登録機能）
+
+・ログイン中のユーザー情報を/auth/meから取得
+
+・ユーザーIDをもとに、/favorites/:user_idからお気に入り店舗を取得
+
+・お気に入り追加：POST/favoritesにuser_idとstore_idを送信。 お気に入り削除: DELETE/favoritesにuser_idとstore_idを送信。
 
 <img width="441" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/47a8ef62-bbe9-4231-8f84-4bb7d303296a" />
-・マイページの登録
+
+（マイページの登録）
+
+・　ユーザー情報をGET/auth/meで取得し、ユーザー名・メールアドレスをマイページに表示
+
+・プロフィールの変更はPOST/auth/updateにて送信し、名前・メール・パスワードを更新
+
+・ログアウトはPOST/auth/logoutによりセッション用クッキーを削除してログアウト完了
