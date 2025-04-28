@@ -1,4 +1,4 @@
-# Wan Paradise - 全国の犬関連施設検索アプリ
+# Wan Paradise - 全国の犬関連施設検索アプリ（フロントエンド）
 
 [アプリを使ってみる](https://wan.mayuka.site)
 
