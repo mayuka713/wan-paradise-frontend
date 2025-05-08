@@ -1,46 +1,112 @@
-# Getting Started with Create React App
+# Wan Paradise - 全国の犬関連施設検索アプリ（フロントエンド）
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[アプリを使ってみる](https://wan.mayuka.site)
 
-## Available Scripts
+全国の犬関連施設（ドッグラン、ドッグカフェ、ペットショップ、動物病院）を検索・管理できるWebアプリケーションを開発しました。（現在は、北海道・東京・大阪の店舗情報を表示しています。）
 
-In the project directory, you can run:
+ユーザーが自分のニーズに合った店舗を簡単に見つけられるように、以下のような機能を実装しています。
 
-### `npm start`
+- タグ検索機能（例：駐車場あり、小型犬専用あり など）
+- お気に入り登録機能
+- レビュー投稿機能
+- スマートフォン対応（レスポンシブデザイン）
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 使用技術
 
-### `npm test`
+| 分野 | 技術 |
+|------|------|
+| フロントエンド | React / TypeScript |
+| バックエンド |TypeScript/  Node.js / Express |
+| データベース | PostgreSQL |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 技術選定の理由
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React**：UIをコンポーネントごとに分けて開発・管理できるため、拡張性が高く保守しやすい。
+- **TypeScript**：型安全性を確保し、バグの発生を抑えることができる。
+- **Node.js + Express**：シンプルで柔軟なAPIの構築が可能。
+- **PostgreSQL**：リレーショナルデータの管理に強く、必要な情報を効率よく扱える。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## このアプリを作成した目的
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+愛犬と一緒にお出かけできる施設の情報を調べるのが好きで、その楽しさを、もっとたくさんの人に広げたいと思ったことがきっかけです。
+特に、自分が住んでいる地域から探しやすかったり、条件に合わせて施設を見つけられるサービスを、自分でも作ってみたいと思い、ポートフォリオとして取り組みました。
+React / Express / PostgreSQL で構成されたフルスタックアプリで、タグ検索・レビュー投稿・お気に入り登録・マイページ機能など、ユーザー中心の設計を意識して作り込みました。  
+現在はシーディングで店舗データを登録していますが、今後は店舗オーナー自身が情報を登録・編集できる管理機能の導入を目指しています。
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## スクリーンショット
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+<img width="905" alt="2025年4月20日 スクリーンショット" src="https://github.com/user-attachments/assets/627d5860-b6cc-445c-9b53-884d5d1ac826" />　
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+（タグによる絞り込み機能）
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+①タグ（設備・特徴）を選択することで、条件に合うドッグランだけを絞り込みができる。
+
+②タグや店舗情報はバックエンドAPIから取得し、リアルタイムに更新される。
+
+③店舗ごとに複数画像スライドやレビューの平均星評価を表示。
+
+④条件に該当するドッグランがない場合には、エラーメッセージを表示。
+
+
+
+
+
+
+<img width="700" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/a3091ebe-22fe-41eb-8aa9-52cedd8da910" />
+
+
+（レビュー投稿機能）
+
+①各ドッグラン店舗に対するレビュー一覧を表示。
+
+②口コミ投稿用のモーダルを開き、新しい口コミを投稿できる。
+
+③投稿後はリアルタイムでレビュー一覧と平均評価を更新。
+
+④店舗の平均評価（星の割合）を計算し、ビジュアルで表示。
+
+⑤店舗情報（名前）は別途取得して、口コミページに表示。
+
+⑥データ取得や投稿エラー時には、エラーメッセージを表示してフォロー。
+
+![Favorites from wan mayuka site](https://github.com/user-attachments/assets/6daae0f1-572e-4280-b301-ad369789add5)
+
+（お気に入り登録機能）
+
+①ログインユーザーのお気に入り施設をカテゴリ（ドッグラン、カフェ、ショップ、病院）別に一覧表示。
+
+②各施設の名前、画像、レビュー平均評価を表示。
+
+③お気に入り情報は、ログインユーザーに紐づいてデータベースから取得。
+
+④各施設の詳細ページへリンクできるようになっています。
+
+⑤ログインしていない場合は「ログインしてください」と案内を表示。
+
+
+
+<img width="441" alt="スクリーンショット 2025年4月20日" src="https://github.com/user-attachments/assets/47a8ef62-bbe9-4231-8f84-4bb7d303296a" />
+
+（マイページの登録）
+
+①ログイン中のユーザー情報（名前、メールアドレス）を表示。
+
+②ユーザー名、メールアドレス、パスワードの変更・更新。
+
+③更新後には、モーダルで「更新成功」メッセージを表示。
+
+④「お気に入り一覧」ページへのリンクを用意し、マイページから直接遷移ができる。
+
+⑤ログアウト機能を実装しており、ボタン一つでセッションを終了できる。
+
+
