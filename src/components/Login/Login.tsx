@@ -11,8 +11,8 @@ function Login(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
+    try { 
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`,{
         method: "POST",
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

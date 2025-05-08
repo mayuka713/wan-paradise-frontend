@@ -174,14 +174,14 @@ const FavoritePage: React.FC = () => {
                               const imgData = typeof favorite.store_img === "string" ? JSON.parse(favorite.store_img) : favorite.store_img;
                               return Array.isArray(imgData) && imgData.length > 0 ? imgData[0] : "https://placehold.jp/150x150.png";
                             } catch (error) {
-                              console.error("❌ 画像URLのパースエラー:", error);
+                              console.error("画像URLのパースエラー:", error);
                               return "https://placehold.jp/150x150.png";
                             }
                           })()}
                           alt={favorite.store_name}
                           className="favorite-item-img"
                           onError={(e) => {
-                            console.log("❌ 画像が読み込めません:", e.currentTarget.src);
+                            console.log("画像が読み込めません:", e.currentTarget.src);
                             e.currentTarget.src = "https://placehold.jp/150x150.png";
                           }}
                         />

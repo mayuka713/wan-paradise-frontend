@@ -52,8 +52,7 @@ const DogRunReviewList: React.FC = () => {
     const fetchStoreName = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/stores/store-name/${storeId}`
-        );
+          `${process.env.REACT_APP_BASE_URL}/stores/store-name/${storeId}`);
         if (!response.ok) throw new Error("店舗情報の取得に失敗しました");
 
         const data = await response.json();
@@ -94,6 +93,7 @@ const DogRunReviewList: React.FC = () => {
         const newAverageRating = totalRating / updatedReviews.length;
 
         setAverageRating(Math.min(newAverageRating, 5)); // 平均評価を更新
+        
         return updatedReviews;
         
       });

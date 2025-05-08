@@ -12,38 +12,55 @@ function Register(): JSX.Element {
   const navigate = useNavigate(); // useNavigateを初期化
 
   // フォーム送信時の処理
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // パスワードと確認パスワードの検証
     if (password !== confirmPassword) {
-      setErrorMessage("パスワードが一致しません。");
+      setErrorMessage("パスワードが一致しません");
       return;
     }
-    try {
-      // サーバーへのリクエスト
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/auth/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ name, email, password }),
-        }
-      );
 
-      if (response.ok) {
-        console.log("登録が完了しました");
-        navigate("/"); // リダイレクト先のURLを指定
-      } else {
-        setErrorMessage("登録に失敗しました。");
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (!response.ok) {
+        setErrorMessage("登録に失敗しました");
+        return;
       }
+
+      console.log("完了しました");
+
+      const userResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/me`, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!userResponse.ok) {
+        setErrorMessage("ユーザー情報取得に失敗しました");
+        return;
+      }
+
+      const userData = await userResponse.json();
+      const role = userData.user.role;
+
+      console.log(`このユーザーは${role}です`);
+
+      navigate(role === "owner" ? "/owner-page" : "/");
+
     } catch (error) {
-      setErrorMessage("サーバーエラーが発生しました。");
+      setErrorMessage("エラー発生");
     }
+
   };
+
 
   return (
     <div className="register-container">

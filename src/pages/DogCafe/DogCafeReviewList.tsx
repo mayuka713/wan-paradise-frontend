@@ -38,6 +38,7 @@ const DogCafeReviewList: React.FC = () => {
             (sum: number, review: Review) => sum + review.rating,0);
           const avgRating = totalRating / data.length;
           setAverageRating(Math.min(avgRating, 5)); // 5を超えないように制限
+          
         } else {
           setAverageRating(0);
         }
