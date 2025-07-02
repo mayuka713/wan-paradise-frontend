@@ -17,7 +17,7 @@ function Register(): JSX.Element {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setErrorMessage("パスワードが一致しません");
+      setErrorMessage("パスワードが一致しませんでした");
       return;
     }
 
