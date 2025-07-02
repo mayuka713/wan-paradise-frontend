@@ -81,41 +81,41 @@ const DogRunReviewList = () => {
         }
     };
     return (<>
-      <Header />
-      <div className="review-container">
-        <h1 className="store-name-review">{storeName || "店舗名を取得中..."}</h1>
-        {/* 平均評価の表示 */}
-        <div className="review-star-container">
-          <div className="review-star-background">★★★★★</div>
-          <div className="review-star-filled" style={{
-            width: `${(averageRating / 5) * 100}%`,
-        }}>
-            ★★★★★
-          </div>
-        </div>
-        <span className="average-rating-value">{averageRating.toFixed(1)}</span>
-
-        <h2 className="review-title">{storeName} 口コミ一覧</h2>
-        {/* モーダルを開く */}
-        <button onClick={() => openModal(storeName)} className="click-review-button">
-          投稿
-        </button>
-
-        {/* レビューリストの表示 */}
-        {reviews.map((review) => (<div key={review.id} className="review-card">
-            <div className="review-rating">
-              {[1, 2, 3, 4, 5].map((value) => (<span key={value} className={`star ${value <= review.rating ? "selected" : ""}`}>
-                  ★
-                </span>))}
-              <strong style={{ marginLeft: "8px" }}>{review.rating.toFixed(1)}</strong>
+        <Header />
+        <div className="review-container">
+            <h1 className="store-name-review">{storeName || "店舗名を取得中..."}</h1>
+            {/* 平均評価の表示 */}
+            <div className="review-star-container">
+                <div className="review-star-background">★★★★★</div>
+                <div className="review-star-filled" style={{
+                    width: `${(averageRating / 5) * 100}%`,
+                }}>
+                    ★★★★★
+                </div>
             </div>
-            <p className="review-comment">{review.comment}</p>
-          </div>))}
-      </div>
-      <Footer />
+            <span className="average-rating-value">{averageRating.toFixed(1)}</span>
 
-      {/* モーダルコンポーネント */}
-      <Modal onSubmit={handleReviewSubmit}/>
+            <h2 className="review-title">{storeName} 口コミ一覧</h2>
+            {/* モーダルを開く */}
+            <button onClick={() => openModal(storeName)} className="click-review-button">
+                投稿
+            </button>
+
+            {/* レビューリストの表示 */}
+            {reviews.map((review) => (<div key={review.id} className="review-card">
+                <div className="review-rating">
+                    {[1, 2, 3, 4, 5].map((value) => (<span key={value} className={`star ${value <= review.rating ? "selected" : ""}`}>
+                        ★
+                    </span>))}
+                    <strong style={{ marginLeft: "8px" }}>{review.rating.toFixed(1)}</strong>
+                </div>
+                <p className="review-comment">{review.comment}</p>
+            </div>))}
+        </div>
+        <Footer />
+
+        {/* モーダルコンポーネント */}
+        <Modal onSubmit={handleReviewSubmit} />
     </>);
 };
 export default DogRunReviewList;
